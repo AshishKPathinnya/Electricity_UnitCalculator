@@ -20,7 +20,7 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 850px;
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
@@ -52,6 +52,14 @@ th, td {
 .appliance {
     text-align: left;
     padding-left: 5%;
+  }
+
+  .addDuplicates {
+    border: none;
+    font-size: 26px;
+    font-weight: bolder;
+    color: #4287f5;
+    background-color: white;
   }
 
 #applianceRowDiv button{
