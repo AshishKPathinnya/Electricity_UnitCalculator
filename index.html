@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Electricity Consumption Calculator</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="top-banner">
+        <img src="img/logo.png" alt="APDCL Logo" class="logo">
+        <h1>Assam Power Distribution Company Limited</h1>
+    </div>
+    <div class="container">
+        <h2>Electricity Consumption Calculator</h2>
+        <table>
+            <tr>
+                <th>Appliances</th>
+                <th>Watt</th>
+                <th>Hour Use</th>
+            </tr>
+            
+            <tr>
+                <td class="appliance">
+                    <input type="checkbox" name="device" value="light">
+                    <label>Light</label>
+                </td>
+                <td><input type="text" name="light_power"></td>
+                <td><input type="text" name="light_time"></td>
+            </tr>
+
+            <tr>
+                <td class="appliance">
+                    <input type="checkbox" name="device" value="fan">
+                    <label>Fan</label>
+                </td>
+                <td><input type="text" name="fan_power" value="75"></td>
+                <td><input type="text" name="fan_time"></td>
+            </tr>
+
+            <tr>
+                <td class="appliance">
+                    <input type="checkbox" name="device" value="refrigerator">
+                    <label>Refrigerator</label>
+                </td>
+                <td><input type="text" name="refrigerator_power" value="300"></td>
+                <td><input type="text" name="refrigerator_time"></td>
+            </tr>
+
+            <tr>
+                <td class="appliance">
+                    <input type="checkbox" name="device" value="television">
+                    <label>Television</label>
+                </td>
+                <td><input type="text" name="television_power" value="60"></td>
+                <td><input type="text" name="television_time"></td>
+            </tr>
+            
+            <tr>
+                <td class="appliance">
+                    <input type="checkbox" name="device" value="airconditioner">
+                    <label>Air Conditioner</label>
+                </td>
+                <td><input type="text" name="airconditioner_power"></td>
+                <td><input type="text" name="airconditioner_time"></td>
+            </tr> 
+
+            <tr>
+                <td class="appliance">
+                    <input type="checkbox" name="device" value="geyser">
+                    <label>Geyser</label>
+                </td>
+                <td><input type="text" name="geyser_power" value="2200"></td>
+                <td><input type="text" name="geyser_time"></td>
+            </tr> 
+
+            <tr>
+                <td class="appliance">
+                    <input type="checkbox" name="device" value="oven">
+                    <label>Microwave Oven</label>
+                </td>
+                <td><input type="text" name="oven_power" value="1400"></td>
+                <td><input type="text" name="oven_time"></td>
+            </tr> 
+
+            <tr>
+                <td class="appliance">
+                    <input type="checkbox" name="device" value="waterpump">
+                    <label>Water Pump</label>
+                </td>
+                <td><input type="text" name="waterpump_power" value="800"></td>
+                <td><input type="text" name="waterpump_time"></td>
+            </tr>
+
+            <tr>
+                <td class="appliance">
+                    <input type="checkbox" name="device" value="laptop">
+                    <label>Laptop</label>
+                </td>
+                <td><input type="text" name="laptop_power" value="100"></td>
+                <td><input type="text" name="laptop_time"></td>
+            </tr>                      
+            
+          
+        </table>        
+
+        <div id="applianceRowDiv"><button onclick="addApplianceRow()">+Add More Appliances</button></div>
+
+        <div class="result">
+            <button onclick="calculateConsumption()">Calculate</button>
+            <p id="total_result"></p>           
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
