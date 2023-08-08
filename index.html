@@ -2,14 +2,21 @@
 <html>
 <head>
     <title>Electricity Consumption Calculator</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <!-- <link rel="stylesheet" type="text/css" href="style2.css"> -->
+    <link id="theme" rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
     <div class="top-banner">
+        <div class="themeButtonContainer">
+            <button class="themeButton" onclick="toggleTheme(event)">
+                <img src="img/sunwhiteicon.png" id="themeImage" alt="Light Mode">
+            </button>
+        </div>        
         <img src="img/logo.png" alt="APDCL Logo" class="logo">
         <h1>Assam Power Distribution Company Limited</h1>
     </div>
     <div class="container">
+
         <h2>Electricity Consumption Calculator</h2>        
 
         <table>

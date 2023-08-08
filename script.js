@@ -236,3 +236,20 @@ function addLaptop(button) {
         <td><input type="text" name="new_laptop_minute" placeholder="Minute"></td>
     `;
 }
+
+
+
+function toggleTheme(event) {
+    event.stopPropagation();
+
+    var theme = document.getElementsByTagName('link')[0];
+    var image = document.getElementById("themeImage");
+
+    if (theme.getAttribute('href') == 'styles.css') {
+        theme.setAttribute('href', 'style2.css');
+        image.src = "img/moonwhiteicon.png";
+    } else {
+        theme.setAttribute('href', 'styles.css');
+        image.src = "img/sunwhiteicon.png";
+    }
+}
