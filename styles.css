@@ -49,6 +49,13 @@ th, td {
     padding: 5px;
   }
 
+  select {
+    width: 100%;
+    appearance: none;
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+
 .appliance {
     text-align: left;
     padding-left: 5%;

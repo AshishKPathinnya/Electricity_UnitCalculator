@@ -5,7 +5,7 @@ function calculateConsumption() {
 
     appliances.forEach(appliance => {
         const row = appliance.closest("tr");
-        const powerField = row.querySelector("input[type='text'][name$='_power']");
+        const powerField = row.querySelector("input[type='text'][name$='_power'], select[name$='_power']");
         const hourField = row.querySelector("input[type='text'][name$='_hour']");
         const minuteField = row.querySelector("input[type='text'][name$='_minute']");
        
@@ -67,7 +67,18 @@ function addLight(button) {
             <input type="checkbox" name="device" value="new_light" checked>
             <label>Light</label>
         </td>
-        <td><input type="text" name="new_light_power"></td>
+        <td>
+            <select id="lightWatt" name="new_light_power">
+            <option value="5">5W</option>
+            <option value="9">9W</option>
+            <option value="15">15W</option>
+            <option value="20">20W</option>
+            <option value="30">30W</option>
+            <option value="40">40W</option>
+            <option value="60">60W</option>
+            <option value="100">100W</option>
+            </select>
+        </td>
         <td><input type="text" name="new_light_hour" placeholder="Hour"></td>
         <td><input type="text" name="new_light_minute" placeholder="Minute"></td>
     `;
@@ -85,7 +96,7 @@ function addFan(button) {
             <input type="checkbox" name="device" value="new_light" checked>
             <label>Fan</label>
         </td>
-        <td><input type="text" name="new_fan_power"></td>
+        <td><input type="text" name="new_fan_power" value="75W"></td>
         <td><input type="text" name="new_fan_hour" placeholder="Hour"></td>
         <td><input type="text" name="new_fan_minute" placeholder="Minute"></td>
     `;
@@ -103,7 +114,7 @@ function addRefrigerator(button) {
             <input type="checkbox" name="device" value="new_light" checked>
             <label>Refrigerator</label>
         </td>
-        <td><input type="text" name="new_refrigerator_power"></td>
+        <td><input type="text" name="new_refrigerator_power" value="300W"></td>
         <td><input type="text" name="new_refrigerator_hour" placeholder="Hour"></td>
         <td><input type="text" name="new_refrigerator_minute" placeholder="Minute"></td>
     `;
@@ -121,7 +132,7 @@ function addTelevision(button) {
             <input type="checkbox" name="device" value="new_light" checked>
             <label>Television</label>
         </td>
-        <td><input type="text" name="new_television_power"></td>
+        <td><input type="text" name="new_television_power" value="60W"></td>
         <td><input type="text" name="new_television_hour" placeholder="Hour"></td>
         <td><input type="text" name="new_television_minute" placeholder="Minute"></td>
     `;
@@ -139,7 +150,16 @@ function addAirConditioner(button) {
             <input type="checkbox" name="device" value="new_light" checked>
             <label>Air Conditioner</label>
         </td>
-        <td><input type="text" name="new_airconditioner_power"></td>
+        <td>                    
+            <select id="airconditionerWatt" name="new_airconditioner_power">
+                <option value="1200">1200W</option>
+                <option value="1700">1700W</option>
+                <option value="2300">2300W</option>
+                <option value="1100">1100W</option>
+                <option value="1600">1600W</option>
+                <option value="2100">2100W</option>
+            </select>
+        </td>
         <td><input type="text" name="new_airconditioner_hour" placeholder="Hour"></td>
         <td><input type="text" name="new_airconditioner_minute" placeholder="Minute"></td>
     `;
@@ -157,7 +177,7 @@ function addGeyser(button) {
             <input type="checkbox" name="device" value="new_light" checked>
             <label>Geyser</label>
         </td>
-        <td><input type="text" name="new_geyser_power"></td>
+        <td><input type="text" name="new_geyser_power" value="2200W"></td>
         <td><input type="text" name="new_geyser_hour" placeholder="Hour"></td>
         <td><input type="text" name="new_geyser_minute" placeholder="Minute"></td>
     `;
@@ -175,7 +195,7 @@ function addOven(button) {
             <input type="checkbox" name="device" value="new_light" checked>
             <label>Microwave Oven</label>
         </td>
-        <td><input type="text" name="new_oven_power"></td>
+        <td><input type="text" name="new_oven_power" value="1400W"></td>
         <td><input type="text" name="new_oven_hour" placeholder="Hour"></td>
         <td><input type="text" name="new_oven_minute" placeholder="Minute"></td>
     `;
@@ -193,7 +213,7 @@ function addWaterPump(button) {
             <input type="checkbox" name="device" value="new_light" checked>
             <label>Water Pump</label>
         </td>
-        <td><input type="text" name="new_waterpump_power"></td>
+        <td><input type="text" name="new_waterpump_power" value="800W"></td>
         <td><input type="text" name="new_waterpump_hour" placeholder="Hour"></td>
         <td><input type="text" name="new_waterpump_minute" placeholder="Minute"></td>
     `;
@@ -211,7 +231,7 @@ function addLaptop(button) {
             <input type="checkbox" name="device" value="new_light" checked>
             <label>Laptop</label>
         </td>
-        <td><input type="text" name="new_laptop_power"></td>
+        <td><input type="text" name="new_laptop_power" value="100W"></td>
         <td><input type="text" name="new_laptop_hour" placeholder="Hour"></td>
         <td><input type="text" name="new_laptop_minute" placeholder="Minute"></td>
     `;

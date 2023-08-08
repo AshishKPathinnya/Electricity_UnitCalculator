@@ -10,11 +10,12 @@
         <h1>Assam Power Distribution Company Limited</h1>
     </div>
     <div class="container">
-        <h2>Electricity Consumption Calculator</h2>
+        <h2>Electricity Consumption Calculator</h2>        
+
         <table>
             <tr>
                 <th>Appliances</th>
-                <th>Watt</th>
+                <th>Load</th>
                 <th colspan="2">Time</th>
             </tr>
             
@@ -23,7 +24,18 @@
                     <input type="checkbox" name="device" value="light">
                     <label>Light</label>
                 </td>
-                <td><input type="text" name="light_power"></td>
+                <td>
+                    <select id="lightWatt" name="light_power">
+                        <option value="5">5W</option>
+                        <option value="9">9W</option>
+                        <option value="15">15W</option>
+                        <option value="20">20W</option>
+                        <option value="30">30W</option>
+                        <option value="40">40W</option>
+                        <option value="60">60W</option>
+                        <option value="100">100W</option>
+                    </select>
+                </td>
                 <td><input type="text" name="light_hour" placeholder="Hour"></td>
                 <td><input type="text" name="light_minute" placeholder="Minute" ></td>
                 <td><button class="addDuplicates" onclick="addLight(this)">+</button></td>
@@ -34,7 +46,7 @@
                     <input type="checkbox" name="device" value="fan">
                     <label>Fan</label>
                 </td>
-                <td><input type="text" name="fan_power" value="75"></td>
+                <td><input type="text" name="fan_power" value="75W"></td>
                 <td><input type="text" name="fan_hour" placeholder="Hour"></td>
                 <td><input type="text" name="fan_minute" placeholder="Minute"></td>
                 <td><button class="addDuplicates" onclick="addFan(this)">+</button></td>
@@ -45,7 +57,7 @@
                     <input type="checkbox" name="device" value="refrigerator">
                     <label>Refrigerator</label>
                 </td>
-                <td><input type="text" name="refrigerator_power" value="300"></td>
+                <td><input type="text" name="refrigerator_power" value="300W"></td>
                 <td><input type="text" name="refrigerator_hour" placeholder="Hour"></td>
                 <td><input type="text" name="refrigerator_minute" placeholder="Minute"></td>
                 <td><button class="addDuplicates" onclick="addRefrigerator(this)">+</button></td>
@@ -56,7 +68,7 @@
                     <input type="checkbox" name="device" value="television">
                     <label>Television</label>
                 </td>
-                <td><input type="text" name="television_power" value="60"></td>
+                <td><input type="text" name="television_power" value="60W"></td>
                 <td><input type="text" name="television_hour" placeholder="Hour"></td>
                 <td><input type="text" name="television_minute" placeholder="Minute"></td>
                 <td><button class="addDuplicates" onclick="addTelevision(this)">+</button></td>
@@ -67,7 +79,16 @@
                     <input type="checkbox" name="device" value="airconditioner">
                     <label>Air Conditioner</label>
                 </td>
-                <td><input type="text" name="airconditioner_power"></td>
+                <td>
+                    <select id="airconditionerWatt" name="airconditioner_power">
+                        <option value="1200">1200W</option>
+                        <option value="1700">1700W</option>
+                        <option value="2300">2300W</option>
+                        <option value="1100">1100W</option>
+                        <option value="1600">1600W</option>
+                        <option value="2100">2100W</option>
+                    </select>
+                </td>
                 <td><input type="text" name="airconditioner_hour" placeholder="Hour"></td>
                 <td><input type="text" name="airconditioner_minute" placeholder="Minute"></td>
                 <td><button class="addDuplicates" onclick="addAirConditioner(this)">+</button></td>
@@ -78,7 +99,7 @@
                     <input type="checkbox" name="device" value="geyser">
                     <label>Geyser</label>
                 </td>
-                <td><input type="text" name="geyser_power" value="2200"></td>
+                <td><input type="text" name="geyser_power" value="2200W"></td>
                 <td><input type="text" name="geyser_hour" placeholder="Hour"></td>
                 <td><input type="text" name="geyser_minute" placeholder="Minute"></td>
                 <td><button class="addDuplicates" onclick="addGeyser(this)">+</button></td>
@@ -89,7 +110,7 @@
                     <input type="checkbox" name="device" value="oven">
                     <label>Microwave Oven</label>
                 </td>
-                <td><input type="text" name="oven_power" value="1400"></td>
+                <td><input type="text" name="oven_power" value="1400W"></td>
                 <td><input type="text" name="oven_hour" placeholder="Hour"></td>
                 <td><input type="text" name="oven_minute" placeholder="Minute"></td>
                 <td><button class="addDuplicates" onclick="addOven(this)">+</button></td>
@@ -100,7 +121,7 @@
                     <input type="checkbox" name="device" value="waterpump">
                     <label>Water Pump</label>
                 </td>
-                <td><input type="text" name="waterpump_power" value="800"></td>
+                <td><input type="text" name="waterpump_power" value="800W"></td>
                 <td><input type="text" name="waterpump_hour" placeholder="Hour"></td>
                 <td><input type="text" name="waterpump_minute" placeholder="Minute"></td>
                 <td><button class="addDuplicates" onclick="addWaterPump(this)">+</button></td>
@@ -111,9 +132,9 @@
                     <input type="checkbox" name="device" value="laptop">
                     <label>Laptop</label>
                 </td>
-                <td><input type="text" name="laptop_power" value="100"></td>
+                <td><input type="text" name="laptop_power" value="100W"></td>
                 <td><input type="text" name="laptop_hour" placeholder="Hour"></td>
-                <td><input type="text" name="laptop_mminute" placeholder="Minute"></td>
+                <td><input type="text" name="laptop_minute" placeholder="Minute"></td>
                 <td><button class="addDuplicates" onclick="addLaptop(this)">+</button></td>
             </tr>                    
           
