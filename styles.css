@@ -20,7 +20,7 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 850px;
     margin: 20px auto;
     padding: 20px;
     background-color: rgba(5 10 42 / 52%);
@@ -61,6 +61,14 @@ td {
     padding-left: 5%;
     align-items: center;
     display: flex;
+  }
+
+  .addDuplicates {
+    border: none;
+    font-size: 26px;
+    font-weight: bolder;
+    color: #4287f5;
+    background-color: white;
   }
 
 #applianceRowDiv button{
