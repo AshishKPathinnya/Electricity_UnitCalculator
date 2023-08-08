@@ -15,7 +15,7 @@
             <tr>
                 <th>Appliances</th>
                 <th>Watt</th>
-                <th>Hour Use</th>
+                <th colspan="2">Time</th>
             </tr>
             
             <tr>
@@ -24,7 +24,8 @@
                     <label>Light</label>
                 </td>
                 <td><input type="text" name="light_power"></td>
-                <td><input type="text" name="light_time"></td>
+                <td><input type="text" name="light_hour" placeholder="Hour"></td>
+                <td><input type="text" name="light_minute" placeholder="Minute" ></td>
             </tr>
 
             <tr>
@@ -33,7 +34,8 @@
                     <label>Fan</label>
                 </td>
                 <td><input type="text" name="fan_power" value="75"></td>
-                <td><input type="text" name="fan_time"></td>
+                <td><input type="text" name="fan_hour" placeholder="Hour"></td>
+                <td><input type="text" name="fan_minute" placeholder="Minute"></td>
             </tr>
 
             <tr>
@@ -42,7 +44,8 @@
                     <label>Refrigerator</label>
                 </td>
                 <td><input type="text" name="refrigerator_power" value="300"></td>
-                <td><input type="text" name="refrigerator_time"></td>
+                <td><input type="text" name="refrigerator_hour" placeholder="Hour"></td>
+                <td><input type="text" name="refrigerator_minute" placeholder="Minute"></td>
             </tr>
 
             <tr>
@@ -51,7 +54,8 @@
                     <label>Television</label>
                 </td>
                 <td><input type="text" name="television_power" value="60"></td>
-                <td><input type="text" name="television_time"></td>
+                <td><input type="text" name="television_hour" placeholder="Hour"></td>
+                <td><input type="text" name="television_minute" placeholder="Minute"></td>
             </tr>
             
             <tr>
@@ -60,7 +64,8 @@
                     <label>Air Conditioner</label>
                 </td>
                 <td><input type="text" name="airconditioner_power"></td>
-                <td><input type="text" name="airconditioner_time"></td>
+                <td><input type="text" name="airconditioner_hour" placeholder="Hour"></td>
+                <td><input type="text" name="airconditioner_minute" placeholder="Minute"></td>
             </tr> 
 
             <tr>
@@ -69,7 +74,8 @@
                     <label>Geyser</label>
                 </td>
                 <td><input type="text" name="geyser_power" value="2200"></td>
-                <td><input type="text" name="geyser_time"></td>
+                <td><input type="text" name="geyser_hour" placeholder="Hour"></td>
+                <td><input type="text" name="geyser_minute" placeholder="Minute"></td>
             </tr> 
 
             <tr>
@@ -78,7 +84,8 @@
                     <label>Microwave Oven</label>
                 </td>
                 <td><input type="text" name="oven_power" value="1400"></td>
-                <td><input type="text" name="oven_time"></td>
+                <td><input type="text" name="oven_hour" placeholder="Hour"></td>
+                <td><input type="text" name="oven_minute" placeholder="Minute"></td>
             </tr> 
 
             <tr>
@@ -87,7 +94,8 @@
                     <label>Water Pump</label>
                 </td>
                 <td><input type="text" name="waterpump_power" value="800"></td>
-                <td><input type="text" name="waterpump_time"></td>
+                <td><input type="text" name="waterpump_hour" placeholder="Hour"></td>
+                <td><input type="text" name="waterpump_minute" placeholder="Minute"></td>
             </tr>
 
             <tr>
@@ -96,10 +104,11 @@
                     <label>Laptop</label>
                 </td>
                 <td><input type="text" name="laptop_power" value="100"></td>
-                <td><input type="text" name="laptop_time"></td>
-            </tr>                      
-            
+                <td><input type="text" name="laptop_hour" placeholder="Hour"></td>
+                <td><input type="text" name="laptop_mminute" placeholder="Minute"></td>
+            </tr>                    
           
+        
         </table>        
 
         <div id="applianceRowDiv"><button onclick="addApplianceRow()">+Add More Appliances</button></div>

@@ -1,17 +1,30 @@
 function calculateConsumption() {
     const appliances = document.querySelectorAll(".appliance input[type='checkbox']:checked");
     let totalUnits = 0;
+    let totalMinutes = 0;    
 
     appliances.forEach(appliance => {
         const row = appliance.closest("tr");
         const powerField = row.querySelector("input[type='text'][name$='_power']");
-        const timeField = row.querySelector("input[type='text'][name$='_time']");
-
+        const hourField = row.querySelector("input[type='text'][name$='_hour']");
+        const minuteField = row.querySelector("input[type='text'][name$='_minute']");
+       
         const power = parseFloat(powerField.value);
-        const time = parseFloat(timeField.value);
+        let hour = parseFloat(hourField.value);
+        let minute = parseFloat(minuteField.value);
 
-        if (!isNaN(power) && !isNaN(time)) {
-            totalUnits += (power * time) / 1000;
+        if (isNaN(hour)){
+            hour = 0;
+        }
+
+        if (isNaN(minute)){
+            minute = 0;
+        }
+
+        totalMinutes = (hour * 60) + minute;
+
+        if (!isNaN(power) && !isNaN(totalMinutes)) {
+            totalUnits += (power * totalMinutes) / (1000 * 60);
         }
     });
 
@@ -33,7 +46,9 @@ function addApplianceRow() {
             <input type="text" name="new_appliance" placeholder="Name of Appliance" class="otherAppliance">
         </td>
         <td><input type="text" name="new_appliance_power"></td>
-        <td><input type="text" name="new_appliance_time"></td>
+        <td><input type="text" name="new_appliance_hour" placeholder="Hour"></td>
+        <td><input type="text" name="new_appliance_minute" placeholder="Minute"></td>
+
     `;
 
     table.appendChild(newRow);
