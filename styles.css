@@ -109,6 +109,16 @@ th, td {
     background-color: white;
   }
 
+  #viewchart button{
+    margin-left: 35px;
+    margin-bottom: 30px;
+    border: none;
+    font-size: medium;
+    font-weight: bolder;
+    color: #4287f5;
+    background-color: white;
+  }
+
 .result {
     text-align: center;
     padding-top: 20px;

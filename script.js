@@ -34,6 +34,7 @@ function calculateConsumption() {
 function displayResult(totalUnits) {
     const resultDiv = document.querySelector("#total_result");
     resultDiv.textContent = `Total Electricity Consumed: ${totalUnits.toFixed(2)} Units`;
+    
 }
 
 function addApplianceRow() {
