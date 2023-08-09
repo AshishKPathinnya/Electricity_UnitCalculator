@@ -33,7 +33,18 @@ function calculateConsumption() {
 
 function displayResult(totalUnits) {
     const resultDiv = document.querySelector("#total_result");
-    resultDiv.textContent = `Total Electricity Consumed: ${totalUnits.toFixed(2)} Units`;
+    resultDiv.textContent = `Total Electricity Consumed Today: ${totalUnits.toFixed(2)} Units`;
+
+    // Monthly feature Added
+    const earlierResult = totalUnits; 
+    const multipliedResult = earlierResult * 30;
+
+    
+    const multipliedResultElement = document.createElement("p");
+    multipliedResultElement.textContent = `Average Electricity Consumed Monthly: ${multipliedResult.toFixed(2)} Units`;
+    
+    resultDiv.appendChild(multipliedResultElement);
+
     
 }
 
