@@ -39,7 +39,7 @@ body {
 }
 
 .container {
-    max-width: 850px;
+    max-width: 1000px;
     margin: 20px auto;
     padding: 20px;
     background-color: rgba(5 10 42 / 52%);
@@ -164,6 +164,11 @@ td {
 #total_result {
     font-size: 20px;
     color: #ffffff;
+}
+
+#monthly_result {
+  font-size: 18px;
+  color: #ffffff;
 }
 
 .otherAppliance {
