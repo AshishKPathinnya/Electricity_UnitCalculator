@@ -57,6 +57,7 @@ function addApplianceRow() {
         <td><input type="text" name="new_appliance_power"></td>
         <td><input type="text" name="new_appliance_hour" placeholder="Hour"></td>
         <td><input type="text" name="new_appliance_minute" placeholder="Minute"></td>
+        <td><button class="deleteRow" onclick="deleteRow(this)">x</button></td>
     `;
 
     table.appendChild(newRow);
@@ -90,6 +91,7 @@ function addLight(button) {
         </td>
         <td><input type="text" name="new_light_hour" placeholder="Hour"></td>
         <td><input type="text" name="new_light_minute" placeholder="Minute"></td>
+        <td><button class="deleteRow" onclick="deleteRow(this)">x</button></td>
     `;
 }
 
@@ -109,6 +111,7 @@ function addFan(button) {
         <td><input type="text" name="new_fan_power" value="75W"></td>
         <td><input type="text" name="new_fan_hour" placeholder="Hour"></td>
         <td><input type="text" name="new_fan_minute" placeholder="Minute"></td>
+        <td><button class="deleteRow" onclick="deleteRow(this)">x</button></td>
     `;
 }
 
@@ -128,6 +131,7 @@ function addRefrigerator(button) {
         <td><input type="text" name="new_refrigerator_power" value="300W"></td>
         <td><input type="text" name="new_refrigerator_hour" placeholder="Hour"></td>
         <td><input type="text" name="new_refrigerator_minute" placeholder="Minute"></td>
+        <td><button class="deleteRow" onclick="deleteRow(this)">x</button></td>
     `;
 }
 
@@ -147,6 +151,7 @@ function addTelevision(button) {
         <td><input type="text" name="new_television_power" value="60W"></td>
         <td><input type="text" name="new_television_hour" placeholder="Hour"></td>
         <td><input type="text" name="new_television_minute" placeholder="Minute"></td>
+        <td><button class="deleteRow" onclick="deleteRow(this)">x</button></td>
     `;
 }
 
@@ -175,6 +180,7 @@ function addAirConditioner(button) {
         </td>
         <td><input type="text" name="new_airconditioner_hour" placeholder="Hour"></td>
         <td><input type="text" name="new_airconditioner_minute" placeholder="Minute"></td>
+        <td><button class="deleteRow" onclick="deleteRow(this)">x</button></td>
     `;
 }
 
@@ -194,6 +200,7 @@ function addGeyser(button) {
         <td><input type="text" name="new_geyser_power" value="2200W"></td>
         <td><input type="text" name="new_geyser_hour" placeholder="Hour"></td>
         <td><input type="text" name="new_geyser_minute" placeholder="Minute"></td>
+        <td><button class="deleteRow" onclick="deleteRow(this)">x</button></td>
     `;
 }
 
@@ -213,6 +220,7 @@ function addOven(button) {
         <td><input type="text" name="new_oven_power" value="1400W"></td>
         <td><input type="text" name="new_oven_hour" placeholder="Hour"></td>
         <td><input type="text" name="new_oven_minute" placeholder="Minute"></td>
+        <td><button class="deleteRow" onclick="deleteRow(this)">x</button></td>
     `;
 }
 
@@ -232,6 +240,7 @@ function addWaterPump(button) {
         <td><input type="text" name="new_waterpump_power" value="800W"></td>
         <td><input type="text" name="new_waterpump_hour" placeholder="Hour"></td>
         <td><input type="text" name="new_waterpump_minute" placeholder="Minute"></td>
+        <td><button class="deleteRow" onclick="deleteRow(this)">x</button></td>
     `;
 }
 
@@ -251,9 +260,16 @@ function addLaptop(button) {
         <td><input type="text" name="new_laptop_power" value="100W"></td>
         <td><input type="text" name="new_laptop_hour" placeholder="Hour"></td>
         <td><input type="text" name="new_laptop_minute" placeholder="Minute"></td>
+        <td><button class="deleteRow" onclick="deleteRow(this)">x</button></td>
     `;
 }
 
+
+function deleteRow(button){
+    const table = document.querySelector("table");
+    const rowIndex = button.closest("tr").rowIndex;
+    table.deleteRow(rowIndex);
+}
 
 
 function toggleTheme(event) {

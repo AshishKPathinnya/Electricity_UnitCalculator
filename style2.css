@@ -101,13 +101,13 @@ td {
     display: flex;
   }
 
-  .addDuplicates {
+  /* .addDuplicates {
     border: none;
     font-size: 26px;
     font-weight: bolder;
     color: #4287f5;
     background-color: white;
-  }
+  } */
 
 #applianceRowDiv button{
     margin-left: 35px;
@@ -236,4 +236,20 @@ input[type="checkbox"] {
 
 .addDuplicates:hover {
     background-color: rgba(0, 0, 0, 0.5); 
+}
+
+.deleteRow {
+  background-color: rgb(22 40 189 / 10%);
+  color: orangered;
+  border: 2px solid orangered;
+  border-radius: 50%; 
+  padding: -2px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s;
+}
+
+.deleteRow:hover {
+  background-color: rgba(0, 0, 0, 0.5); 
 }
