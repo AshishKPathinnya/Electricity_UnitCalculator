@@ -1,7 +1,12 @@
 function calculateConsumption() {
     const appliances = document.querySelectorAll(".appliance input[type='checkbox']:checked");
-    let totalUnits = 0;
-    let totalMinutes = 0;    
+    let perDayUnits = 0;
+    let totalMinutes = 0;
+    // let totalDaysField = document.querySelector("#totalDays");
+    // let totalDays = parseFloat(totalDaysField.value);
+    // if(isNaN(totalDays)) totalDays=1;  
+    // jodi number of days lage uncomment kori dile hol html r logot  
+    let totalDays = 30;
 
     appliances.forEach(appliance => {
         const row = appliance.closest("tr");
@@ -30,18 +35,107 @@ function calculateConsumption() {
         totalMinutes = (hour * 60) + minute;
 
         if (!isNaN(power) && !isNaN(totalMinutes)) {
-            totalUnits += (quantity * power * totalMinutes) / (1000 * 60);
+            perDayUnits += (quantity * power * totalMinutes) / (1000 * 60);
         }
     });
 
-    displayResult(totalUnits);
+    displayResult(perDayUnits, totalDays);
+    calculateBill(perDayUnits, totalDays);
 }
 
-function displayResult(totalUnits) {
+function calculateBill(perDayUnits, totalDays) {
+    const fixedChargeJD = 40;
+    const fixedChargeDA = 70;
+    const fixedChargeDB = 70;
+    const baseChargeJD = 5.05;
+    const baseCharge0to120DA = 5.70;
+    const baseCharge121to240DA = 7;
+    const baseChargeBalanceDA = 7.90;
+    const baseChargeDB = 7.45;
+    const govtSubsidyJD = 1;
+    const govtSubsidy0to120DA = 0.75;
+    const electricityDutyCharge = 0.05;
+    const fpppaCharge = 0.30;
+
+    let fixedCharge = 0;
+    let energyCharge = 0;
+    let electricityDuty = 0;
+    let fpppa = 0;
+    let totalCharge = 0;
+    let govtSubsidy = 0;
+    let grandTotal = 0;
+
+    let totalUnits = perDayUnits * totalDays;
+
+    const connectedLoadField = document.querySelector("#connectedload");
+    const connectedLoad = parseFloat(connectedLoadField.value);
+
+    if (connectedLoad == 0.5) {
+        fixedCharge = connectedLoad * totalDays * 0.03 * fixedChargeJD;
+        energyCharge = totalUnits * baseChargeJD;
+        electricityDuty = electricityDutyCharge * (fixedCharge + energyCharge);
+        fpppa = fpppaCharge * totalUnits;
+        totalCharge = fixedCharge + energyCharge + electricityDuty + fpppa;
+        govtSubsidy = govtSubsidyJD * totalUnits;
+        grandTotal = totalCharge - govtSubsidy;
+    }
+    else if (connectedLoad > 0.5 && connectedLoad < 5) {
+        fixedCharge = connectedLoad * totalDays * 0.03 * fixedChargeDA;
+
+        if (totalUnits <= 120) {
+            energyCharge = totalUnits * baseCharge0to120DA;
+        }
+        else if (totalUnits > 120 && totalUnits <= 240) {
+            energyCharge = (120 * baseCharge0to120DA) + ((totalUnits - 120) * baseCharge121to240DA);
+        }
+        else {
+            energyCharge = (120 * baseCharge0to120DA) + (120 * baseCharge121to240DA) + ((totalUnits - 240) * baseChargeBalanceDA);
+        }
+
+        electricityDuty = electricityDutyCharge * (fixedCharge + energyCharge);
+        fpppa = fpppaCharge * totalUnits;
+        totalCharge = fixedCharge + energyCharge + electricityDuty + fpppa;
+        
+        if (totalUnits <= 120) {
+            govtSubsidy = govtSubsidy0to120DA * totalUnits;
+        }
+        else {
+            govtSubsidy = 0;
+        }
+
+        grandTotal = totalCharge - govtSubsidy;
+    }
+    else if (connectedLoad >= 5 && connectedLoad <= 30) {
+        fixedCharge = connectedLoad * totalDays * 0.03 * fixedChargeDB;
+        energyCharge = totalUnits * baseChargeDB;
+        electricityDuty = electricityDutyCharge * (fixedCharge + energyCharge);
+        fpppa = fpppaCharge * totalUnits;
+        totalCharge = fixedCharge + energyCharge + electricityDuty + fpppa;
+        govtSubsidy = 0;
+        grandTotal = totalCharge - govtSubsidy;
+    }
+
+    const fixedchargeField = document.querySelector("#fixedchargeField");
+    fixedchargeField.value = fixedCharge.toFixed(2);
+    const energyChargeField = document.querySelector("#energychargeField");
+    energyChargeField.value = energyCharge.toFixed(2);
+    const electricitydutyField = document.querySelector("#electricitydutyField");
+    electricitydutyField.value = electricityDuty.toFixed(2);
+    const fpppaField = document.querySelector("#fpppaField");
+    fpppaField.value = fpppa.toFixed(2);
+    const totalField = document.querySelector("#totalField");
+    totalField.value = totalCharge.toFixed(2);
+    const govtsubsidyField = document.querySelector("#govtsubsidyField");
+    govtsubsidyField.value = govtSubsidy.toFixed(2);
+    const grandtotalField = document.querySelector("#grandtotalField");
+    grandtotalField.value = grandTotal.toFixed(2);
+}
+
+function displayResult(perDayUnits, totalDays) {
     const resultDiv = document.querySelector("#total_result");
-    resultDiv.textContent = `Total Electricity Consumed Per Day: ${totalUnits.toFixed(2)} Units`;
+    resultDiv.textContent = `Total Electricity Consumed Per Day: ${perDayUnits.toFixed(2)} Units`;
     const monthlyDiv = document.querySelector("#monthly_result");
-    monthlyDiv.textContent = `Average Electricity Consumed Per Month: ${(totalUnits * 30).toFixed(2)} Units`;    
+    monthlyDiv.textContent = `Average Electricity Consumed Per Month: ${(perDayUnits * totalDays).toFixed(2)} Units`;    
 }
 
 function addApplianceRow() {

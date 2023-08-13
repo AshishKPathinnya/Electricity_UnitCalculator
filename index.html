@@ -162,14 +162,56 @@
             <button onclick="addApplianceRow()">+Add More Appliances</button>
             <a href="chart.html" target="_blank"><button>Go to Chart</button></a>
         </div>
-        
+
         
         <div class="result">
+            <div id="connectedloadDiv">
+                <label>Connected Load: </label>
+                <input type="text" name="connectedload" id="connectedload">
+            </div>
+            <!-- <div id="totalDaysDiv">
+                <label for="totalDays">Total Days: </label>
+                <input type="text" name="totalDays" id="totalDays">
+            </div>          -->
+            <!-- jodi number of days lage uncomment kori dile hol javascript logot -->
+            
             <button onclick="calculateConsumption()">Calculate</button>
             <p id="total_result"></p>
             <br>
             <p id="monthly_result"></p>           
         </div>
+
+        <div class="charges">
+            <div id="fixedchargeDiv">
+                <label for="fixedchargeField">Fixed Charge: </label>
+                <input type="text" name="fixedcharge" id="fixedchargeField">
+            </div>
+            <div id="energychargeDiv">
+                <label for="energychargeField">Energy Charge: </label>
+                <input type="text" name="energycharge" id="energychargeField">
+            </div>
+            <div id="electricitydutyDiv">
+                <label for="electricitydutyField">Electricity Duty: </label>
+                <input type="text" name="electricityduty" id="electricitydutyField">
+            </div>
+            <div id="fpppaDiv">
+                <label for="fpppaField">FPPPA Charge: </label>
+                <input type="text" name="fpppa" id="fpppaField">
+            </div>
+            <div id="totalDiv">
+                <label for="totalField">Total Charge: </label>
+                <input type="text" name="total" id="totalField">
+            </div>
+            <div id="govtsubsidyDiv">
+                <label for="govtsubsidyField">Government Subsidy: </label>
+                <input type="text" name="govtsubsidy" id="govtsubsidyField">
+            </div>
+            <div id="grandtotalDiv">
+                <label for="grandtotalField">Grand Total: </label>
+                <input type="text" name="grandtotal" id="grandtotalField">
+            </div>
+        </div>
+
     </div>
 
     <script src="script.js"></script>
