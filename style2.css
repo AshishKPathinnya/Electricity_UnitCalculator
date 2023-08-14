@@ -253,11 +253,35 @@ input[type="checkbox"] {
 .deleteRow:hover {
   background-color: rgba(0, 0, 0, 0.5); 
 }
-#fixedchargeDiv,
-    #energychargeDiv,
-    #electricitydutyDiv,
-    #fpppaDiv,
-    #totalDiv,
-    #govtsubsidyDiv {
-        display: none;
-    }
+
+#connectedloadDiv {
+  margin-bottom: 30px;
+  color: #ffffff;
+}
+
+#charges {
+  display:none;
+  margin: 20px auto;
+  text-align: center;
+  color: #ffffff;
+  
+
+}
+#showButton{
+  display: none;
+    margin: 20px auto; 
+    font-weight: medium;
+    background-color:#c9cde730;
+    color: white;
+    padding: 10px;
+    border-radius: .5rem;
+    font-size: medium;
+    box-sizing: border-box;
+    border: 5;
+    width: 190px;
+    height: 40px;
+    border-color: #ffffff;
+}
+#showButton:hover{
+  background-color: #000000;
+}

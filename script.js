@@ -42,6 +42,7 @@ function calculateConsumption() {
     displayResult(perDayUnits, totalDays);
     calculateBill(perDayUnits, totalDays);
     
+    
 }
 
 function calculateBill(perDayUnits, totalDays) {
@@ -130,6 +131,10 @@ function calculateBill(perDayUnits, totalDays) {
     govtsubsidyField.textContent = govtSubsidy.toFixed(2);
     const grandtotalField = document.querySelector("#grandtotalField");
     grandtotalField.textContent = grandTotal.toFixed(2);
+
+    
+
+    document.getElementById("showButton").style.display = "block";
 }
 
 function displayResult(perDayUnits, totalDays) {
@@ -137,8 +142,7 @@ function displayResult(perDayUnits, totalDays) {
     resultDiv.textContent = `Total Electricity Consumed Per Day: ${perDayUnits.toFixed(2)} Units`;
     const monthlyDiv = document.querySelector("#monthly_result");
     monthlyDiv.textContent = `Average Electricity Consumed Per Month: ${(perDayUnits * totalDays).toFixed(2)} Units`;
-    // const billDiv = document.querySelector("#bill");
-    // billDiv.textContent = `Bill Amount Generated: ${grandTotal.toFixed(2)} Rupees`;  
+   
 }
 
 function addApplianceRow() {
@@ -387,8 +391,9 @@ document.getElementById("showButton").addEventListener("click", function() {
     var charges = document.getElementById("charges");
     
     if (charges.style.display === "none") {
-        charges.style.display = "block"; // Show the div
-    } else {
-        charges.style.display = "none";  // Hide the div
+        charges.style.display = "block"; 
+    } 
+    else {
+        charges.style.display = "block";  
     }
 });
