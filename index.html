@@ -178,39 +178,43 @@
             <button onclick="calculateConsumption()">Calculate</button>
             <p id="total_result"></p>
             <br>
-            <p id="monthly_result"></p>           
+            <p id="monthly_result"></p>   
+            <!-- <br>
+            <p id="bill"></p>         -->
         </div>
+        <button id="showButton">Show</button>
 
-        <div class="charges">
+        <div class="charges" id="charges">
             <div id="fixedchargeDiv">
                 <label for="fixedchargeField">Fixed Charge: </label>
-                <input type="text" name="fixedcharge" id="fixedchargeField">
+                <span name="fixedcharge" id="fixedchargeField">
             </div>
             <div id="energychargeDiv">
                 <label for="energychargeField">Energy Charge: </label>
-                <input type="text" name="energycharge" id="energychargeField">
+                <span name="energycharge" id="energychargeField">
             </div>
             <div id="electricitydutyDiv">
                 <label for="electricitydutyField">Electricity Duty: </label>
-                <input type="text" name="electricityduty" id="electricitydutyField">
+                <span name="electricityduty" id="electricitydutyField">
             </div>
             <div id="fpppaDiv">
                 <label for="fpppaField">FPPPA Charge: </label>
-                <input type="text" name="fpppa" id="fpppaField">
+                <span name="fpppa" id="fpppaField">
             </div>
             <div id="totalDiv">
                 <label for="totalField">Total Charge: </label>
-                <input type="text" name="total" id="totalField">
+                <span name="total" id="totalField">
             </div>
             <div id="govtsubsidyDiv">
                 <label for="govtsubsidyField">Government Subsidy: </label>
-                <input type="text" name="govtsubsidy" id="govtsubsidyField">
+                <span name="govtsubsidy" id="govtsubsidyField">
             </div>
             <div id="grandtotalDiv">
                 <label for="grandtotalField">Grand Total: </label>
-                <input type="text" name="grandtotal" id="grandtotalField">
+                <span name="grandtotal" id="grandtotalField">
             </div>
         </div>
+        
 
     </div>
 

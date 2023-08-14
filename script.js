@@ -41,6 +41,7 @@ function calculateConsumption() {
 
     displayResult(perDayUnits, totalDays);
     calculateBill(perDayUnits, totalDays);
+    
 }
 
 function calculateBill(perDayUnits, totalDays) {
@@ -116,26 +117,28 @@ function calculateBill(perDayUnits, totalDays) {
     }
 
     const fixedchargeField = document.querySelector("#fixedchargeField");
-    fixedchargeField.value = fixedCharge.toFixed(2);
+    fixedchargeField.textContent = fixedCharge.toFixed(2);
     const energyChargeField = document.querySelector("#energychargeField");
-    energyChargeField.value = energyCharge.toFixed(2);
+    energyChargeField.textContent = energyCharge.toFixed(2);
     const electricitydutyField = document.querySelector("#electricitydutyField");
-    electricitydutyField.value = electricityDuty.toFixed(2);
+    electricitydutyField.textContent = electricityDuty.toFixed(2);
     const fpppaField = document.querySelector("#fpppaField");
-    fpppaField.value = fpppa.toFixed(2);
+    fpppaField.textContent = fpppa.toFixed(2);
     const totalField = document.querySelector("#totalField");
-    totalField.value = totalCharge.toFixed(2);
+    totalField.textContent = totalCharge.toFixed(2);
     const govtsubsidyField = document.querySelector("#govtsubsidyField");
-    govtsubsidyField.value = govtSubsidy.toFixed(2);
+    govtsubsidyField.textContent = govtSubsidy.toFixed(2);
     const grandtotalField = document.querySelector("#grandtotalField");
-    grandtotalField.value = grandTotal.toFixed(2);
+    grandtotalField.textContent = grandTotal.toFixed(2);
 }
 
 function displayResult(perDayUnits, totalDays) {
     const resultDiv = document.querySelector("#total_result");
     resultDiv.textContent = `Total Electricity Consumed Per Day: ${perDayUnits.toFixed(2)} Units`;
     const monthlyDiv = document.querySelector("#monthly_result");
-    monthlyDiv.textContent = `Average Electricity Consumed Per Month: ${(perDayUnits * totalDays).toFixed(2)} Units`;    
+    monthlyDiv.textContent = `Average Electricity Consumed Per Month: ${(perDayUnits * totalDays).toFixed(2)} Units`;
+    // const billDiv = document.querySelector("#bill");
+    // billDiv.textContent = `Bill Amount Generated: ${grandTotal.toFixed(2)} Rupees`;  
 }
 
 function addApplianceRow() {
@@ -380,3 +383,12 @@ function toggleTheme(event) {
         image.src = "img/sunwhiteicon.png";
     }
 }
+document.getElementById("showButton").addEventListener("click", function() {
+    var charges = document.getElementById("charges");
+    
+    if (charges.style.display === "none") {
+        charges.style.display = "block"; // Show the div
+    } else {
+        charges.style.display = "none";  // Hide the div
+    }
+});
