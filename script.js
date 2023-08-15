@@ -171,7 +171,7 @@ function calculateBill(perDayUnits, totalDays) {
 
 function displayResult(perDayUnits, totalDays) {
     const resultDiv = document.querySelector("#total_result");
-    resultDiv.textContent = `Total Electricity Consumed Per Day: ${perDayUnits.toFixed(2)} Units`;
+    resultDiv.textContent = `Average Electricity Consumed Per Day: ${perDayUnits.toFixed(2)} Units`;
     const monthlyDiv = document.querySelector("#monthly_result");
     monthlyDiv.textContent = `Average Electricity Consumed Per Month: ${(perDayUnits * totalDays).toFixed(2)} Units`;
    
