@@ -67,6 +67,7 @@ table {
 th {
     background-color: #4287f5;
     color: white;
+    border-left: 2px solid white;
   }
   
 th, td {
@@ -176,24 +177,43 @@ th, td {
     #govtsubsidyDiv {
         display: none;
     } */
+
 #charges {
   display:none;
   margin: 20px auto;
   text-align: center;
-  
-
 }
+
 #showButton{
   display: none;
-    margin: 20px auto; 
-    font-weight: medium;
-    color: white;
-    background-color: #4287f5;
-    padding: 10px;
-    border-radius: .5rem;
-    font-size: medium;
-    box-sizing: border-box;
-    border: 0;
-    width: 190px;
-    height: 40px;
+  margin: 20px auto; 
+  font-weight: medium;
+  color: white;
+  background-color: #4287f5;
+  padding: 10px;
+  border-radius: .5rem;
+  font-size: medium;
+  box-sizing: border-box;
+  border: 0;
+  width: 190px;
+  height: 40px;
+}
+
+#reportButton{
+  display: none;
+  margin: 20px auto; 
+  font-weight: medium;
+  color: white;
+  background-color: #4287f5;
+  padding: 10px;
+  border-radius: .5rem;
+  font-size: medium;
+  box-sizing: border-box;
+  border: 0;
+  width: 190px;
+  height: 40px;
+}
+
+a {
+  text-decoration: none;
 }

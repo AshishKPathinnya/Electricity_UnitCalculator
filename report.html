@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="reportstyle.css">
+    <title>Detailed Report</title>
+</head>
+<body>
+    <div id="container">
+        <div>
+            <img src="img/logo.png" alt="APDCL Logo" class="logo">
+            <h1>Assam Power Distribution Company Limited</h1>
+        </div>
+
+        <table>
+            <tr>
+                <th colspan="2">Details of Electricity Consumption</th>
+            </tr>
+            <tr>
+                <td>Unit Consumption per Day</td>
+                <td id="per_day_unit"></td>
+            </tr>
+            <tr>
+                <td>Unit Consumption per Month</td>
+                <td id="per_month_unit"></td>
+            </tr>
+            <tr>
+                <td>Fixed Charge</td>
+                <td id="fixed_charge"></td>
+            </tr>
+            <tr>
+                <td>Energy Charge</td>
+                <td id="energy_charge"></td>
+            </tr>
+            <tr>
+                <td>Electricity Duty @5%</td>
+                <td id="electricity_duty"></td>
+            </tr>
+            <tr>
+                <td>FPPPA Charge</td>
+                <td id="fpppa_charge"></td>
+            </tr>
+            <tr>
+                <td>Total Charge</td>
+                <td id="total_charge"></td>
+            </tr>
+            <tr>
+                <td>Government Subsidy</td>
+                <td id="govt_subsidy"></td>
+            </tr>
+            <tr>
+                <td id="gTotal">Grand Total</td>
+                <td id="grand_total"></td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div id="pdfButtonDiv">
+        <button id="pdfButton" onclick="generatePDF()">Download PDF</button>
+    </div>
+
+    <script src="reportscript.js"></script>
+
+</body>
+</html>

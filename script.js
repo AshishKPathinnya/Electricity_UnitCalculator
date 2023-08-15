@@ -85,6 +85,7 @@ function calculateBill(perDayUnits, totalDays) {
         grandTotalResult.textContent = `Approximate Bill for the Month: Rs. ${grandTotal.toFixed(2)}`;
 
         document.getElementById("showButton").style.display = "block";
+        document.getElementById("reportButton").style.display = "block";
     }
     else if (connectedLoad > 0.5 && connectedLoad < 5) {
         fixedCharge = connectedLoad * totalDays * 0.03 * fixedChargeDA;
@@ -116,6 +117,7 @@ function calculateBill(perDayUnits, totalDays) {
         grandTotalResult.textContent = `Approximate Bill for the Month: Rs. ${grandTotal.toFixed(2)}`;
 
         document.getElementById("showButton").style.display = "block";
+        document.getElementById("reportButton").style.display = "block";
     }
     else if (connectedLoad >= 5 && connectedLoad <= 30) {
         fixedCharge = connectedLoad * totalDays * 0.03 * fixedChargeDB;
@@ -130,6 +132,7 @@ function calculateBill(perDayUnits, totalDays) {
         grandTotalResult.textContent = `Approximate Bill for the Month: Rs. ${grandTotal.toFixed(2)}`;
 
         document.getElementById("showButton").style.display = "block";
+        document.getElementById("reportButton").style.display = "block";
     }
     else if (connectedLoad < 0.5 || connectedLoad > 30){
         const grandTotalResult = document.querySelector("#grandTotalResult");
@@ -155,6 +158,15 @@ function calculateBill(perDayUnits, totalDays) {
     const grandtotalField = document.querySelector("#grandtotalField");
     grandtotalField.textContent = grandTotal.toFixed(2);
 
+    localStorage.setItem('fixedCharge', fixedCharge);
+    localStorage.setItem('energyCharge', energyCharge);
+    localStorage.setItem('electricityDuty', electricityDuty);
+    localStorage.setItem('fpppa', fpppa);
+    localStorage.setItem('totalCharge', totalCharge);
+    localStorage.setItem('govtSubsidy', govtSubsidy);
+    localStorage.setItem('grandTotal', grandTotal);
+    localStorage.setItem('perDayUnits', perDayUnits);
+    localStorage.setItem('totalUnits', totalUnits);
 }
 
 function displayResult(perDayUnits, totalDays) {
@@ -419,3 +431,5 @@ document.getElementById("showButton").addEventListener("click", function() {
         charges.style.display = "block";  
     }
 });
+
+
