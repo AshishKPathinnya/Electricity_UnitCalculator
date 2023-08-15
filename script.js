@@ -40,8 +40,7 @@ function calculateConsumption() {
     });
 
     displayResult(perDayUnits, totalDays);
-    calculateBill(perDayUnits, totalDays);
-    
+    calculateBill(perDayUnits, totalDays);   
     
 }
 
@@ -57,7 +56,8 @@ function calculateBill(perDayUnits, totalDays) {
     const govtSubsidyJD = 1;
     const govtSubsidy0to120DA = 0.75;
     const electricityDutyCharge = 0.05;
-    const fpppaCharge = 0.30;
+    const fpppaChargeJDDA = 0.30;
+    const fpppaChargeDB = 0.70;
 
     let fixedCharge = 0;
     let energyCharge = 0;
@@ -76,10 +76,15 @@ function calculateBill(perDayUnits, totalDays) {
         fixedCharge = connectedLoad * totalDays * 0.03 * fixedChargeJD;
         energyCharge = totalUnits * baseChargeJD;
         electricityDuty = electricityDutyCharge * (fixedCharge + energyCharge);
-        fpppa = fpppaCharge * totalUnits;
+        fpppa = fpppaChargeJDDA * totalUnits;
         totalCharge = fixedCharge + energyCharge + electricityDuty + fpppa;
         govtSubsidy = govtSubsidyJD * totalUnits;
         grandTotal = totalCharge - govtSubsidy;
+
+        const grandTotalResult = document.querySelector("#grandTotalResult");
+        grandTotalResult.textContent = `Approximate Bill for the Month: Rs. ${grandTotal.toFixed(2)}`;
+
+        document.getElementById("showButton").style.display = "block";
     }
     else if (connectedLoad > 0.5 && connectedLoad < 5) {
         fixedCharge = connectedLoad * totalDays * 0.03 * fixedChargeDA;
@@ -95,7 +100,7 @@ function calculateBill(perDayUnits, totalDays) {
         }
 
         electricityDuty = electricityDutyCharge * (fixedCharge + energyCharge);
-        fpppa = fpppaCharge * totalUnits;
+        fpppa = fpppaChargeJDDA * totalUnits;
         totalCharge = fixedCharge + energyCharge + electricityDuty + fpppa;
         
         if (totalUnits <= 120) {
@@ -106,15 +111,33 @@ function calculateBill(perDayUnits, totalDays) {
         }
 
         grandTotal = totalCharge - govtSubsidy;
+
+        const grandTotalResult = document.querySelector("#grandTotalResult");
+        grandTotalResult.textContent = `Approximate Bill for the Month: Rs. ${grandTotal.toFixed(2)}`;
+
+        document.getElementById("showButton").style.display = "block";
     }
     else if (connectedLoad >= 5 && connectedLoad <= 30) {
         fixedCharge = connectedLoad * totalDays * 0.03 * fixedChargeDB;
         energyCharge = totalUnits * baseChargeDB;
         electricityDuty = electricityDutyCharge * (fixedCharge + energyCharge);
-        fpppa = fpppaCharge * totalUnits;
+        fpppa = fpppaChargeDB * totalUnits;
         totalCharge = fixedCharge + energyCharge + electricityDuty + fpppa;
         govtSubsidy = 0;
         grandTotal = totalCharge - govtSubsidy;
+
+        const grandTotalResult = document.querySelector("#grandTotalResult");
+        grandTotalResult.textContent = `Approximate Bill for the Month: Rs. ${grandTotal.toFixed(2)}`;
+
+        document.getElementById("showButton").style.display = "block";
+    }
+    else if (connectedLoad < 0.5 || connectedLoad > 30){
+        const grandTotalResult = document.querySelector("#grandTotalResult");
+        grandTotalResult.textContent = `Please enter Connected Load between 0.5-30 to Calculate Bill`;
+    }
+    else {
+        const grandTotalResult = document.querySelector("#grandTotalResult");
+        grandTotalResult.textContent = `Please enter Connected Load to Calculate Bill`;
     }
 
     const fixedchargeField = document.querySelector("#fixedchargeField");
@@ -132,9 +155,6 @@ function calculateBill(perDayUnits, totalDays) {
     const grandtotalField = document.querySelector("#grandtotalField");
     grandtotalField.textContent = grandTotal.toFixed(2);
 
-    
-
-    document.getElementById("showButton").style.display = "block";
 }
 
 function displayResult(perDayUnits, totalDays) {
@@ -387,6 +407,8 @@ function toggleTheme(event) {
         image.src = "img/sunwhiteicon.png";
     }
 }
+
+
 document.getElementById("showButton").addEventListener("click", function() {
     var charges = document.getElementById("charges");
     

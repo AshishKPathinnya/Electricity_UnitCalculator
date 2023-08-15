@@ -156,6 +156,10 @@ th, td {
     font-size: 18px;
 }
 
+#grandTotalResult {
+  font-size: 18px;
+}
+
 .otherAppliance {
     border: none;
     font-size: 14px;
