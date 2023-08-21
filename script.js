@@ -87,7 +87,7 @@ function calculateBill(perDayUnits, totalDays) {
         document.getElementById("showButton").style.display = "block";
         document.getElementById("reportButton").style.display = "block";
     }
-    else if (connectedLoad > 0.5 && connectedLoad < 5) {
+    else if (connectedLoad > 0.5 && Math.round(connectedLoad) < 5) {
         fixedCharge = connectedLoad * totalDays * 0.03 * fixedChargeDA;
 
         if (totalUnits <= 120) {
@@ -108,7 +108,7 @@ function calculateBill(perDayUnits, totalDays) {
             govtSubsidy = govtSubsidy0to120DA * totalUnits;
         }
         else {
-            govtSubsidy = 0;
+            govtSubsidy = govtSubsidy0to120DA * 120;
         }
 
         grandTotal = totalCharge - govtSubsidy;
@@ -119,7 +119,7 @@ function calculateBill(perDayUnits, totalDays) {
         document.getElementById("showButton").style.display = "block";
         document.getElementById("reportButton").style.display = "block";
     }
-    else if (connectedLoad >= 5 && connectedLoad <= 30) {
+    else if (Math.round(connectedLoad) >= 5 && connectedLoad <= 30) {
         fixedCharge = connectedLoad * totalDays * 0.03 * fixedChargeDB;
         energyCharge = totalUnits * baseChargeDB;
         electricityDuty = electricityDutyCharge * (fixedCharge + energyCharge);
