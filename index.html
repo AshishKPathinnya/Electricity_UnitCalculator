@@ -29,12 +29,12 @@
             
             <tr>
                 <td class="appliance">
-                    <input type="checkbox" name="device" value="light">
+                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="light">
                     <label>Light</label>
                 </td>
-                <td><input type="text" name="quantity"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="quantity"></td>
                 <td>
-                    <select id="lightWatt" name="light_power">
+                    <select onchange="calculateConsumption()" id="lightWatt" name="light_power">
                         <option value="5">5W</option>
                         <option value="9">9W</option>
                         <option value="15">15W</option>
@@ -45,55 +45,55 @@
                         <option value="100">100W</option>
                     </select>
                 </td>
-                <td><input type="text" name="light_hour" placeholder="Hour"></td>
-                <td><input type="text" name="light_minute" placeholder="Minute" ></td>
+                <td><input type="text" oninput="calculateConsumption()" name="light_hour" placeholder="Hour"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="light_minute" placeholder="Minute" ></td>
                 <td><button class="addDuplicates" onclick="addLight(this)">+</button></td>
             </tr>
 
             <tr>
                 <td class="appliance">
-                    <input type="checkbox" name="device" value="fan">
+                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="fan">
                     <label>Fan</label>
                 </td>
-                <td><input type="text" name="quantity"></td>
-                <td><input type="text" name="fan_power" value="75W"></td>
-                <td><input type="text" name="fan_hour" placeholder="Hour"></td>
-                <td><input type="text" name="fan_minute" placeholder="Minute"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="quantity"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="fan_power" value="75W"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="fan_hour" placeholder="Hour"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="fan_minute" placeholder="Minute"></td>
                 <td><button class="addDuplicates" onclick="addFan(this)">+</button></td>
             </tr>
 
             <tr>
                 <td class="appliance">
-                    <input type="checkbox" name="device" value="refrigerator">
+                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="refrigerator">
                     <label>Refrigerator</label>
                 </td>
-                <td><input type="text" name="quantity"></td>
-                <td><input type="text" name="refrigerator_power" value="300W"></td>
-                <td><input type="text" name="refrigerator_hour" placeholder="Hour"></td>
-                <td><input type="text" name="refrigerator_minute" placeholder="Minute"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="quantity"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="refrigerator_power" value="300W"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="refrigerator_hour" placeholder="Hour"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="refrigerator_minute" placeholder="Minute"></td>
                 <td><button class="addDuplicates" onclick="addRefrigerator(this)">+</button></td>
             </tr>
 
             <tr>
                 <td class="appliance">
-                    <input type="checkbox" name="device" value="television">
+                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="television">
                     <label>Television</label>
                 </td>
-                <td><input type="text" name="quantity"></td>
-                <td><input type="text" name="television_power" value="60W"></td>
-                <td><input type="text" name="television_hour" placeholder="Hour"></td>
-                <td><input type="text" name="television_minute" placeholder="Minute"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="quantity"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="television_power" value="60W"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="television_hour" placeholder="Hour"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="television_minute" placeholder="Minute"></td>
                 <td><button class="addDuplicates" onclick="addTelevision(this)">+</button></td>
             </tr>
             
             <tr>
                 <td class="appliance">
-                    <input type="checkbox" name="device" value="airconditioner">
+                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="airconditioner">
                     <label>Air Conditioner</label>
                 </td>
-                <td><input type="text" name="quantity"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="quantity"></td>
                 <td>
-                    <select id="airconditionerWatt" name="airconditioner_power">
+                    <select onchange="calculateConsumption()" id="airconditionerWatt" name="airconditioner_power">
                         <option value="1200">1200W</option>
                         <option value="1700">1700W</option>
                         <option value="2300">2300W</option>
@@ -102,56 +102,56 @@
                         <option value="2100">2100W</option>
                     </select>
                 </td>
-                <td><input type="text" name="airconditioner_hour" placeholder="Hour"></td>
-                <td><input type="text" name="airconditioner_minute" placeholder="Minute"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="airconditioner_hour" placeholder="Hour"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="airconditioner_minute" placeholder="Minute"></td>
                 <td><button class="addDuplicates" onclick="addAirConditioner(this)">+</button></td>
             </tr> 
 
             <tr>
                 <td class="appliance">
-                    <input type="checkbox" name="device" value="geyser">
+                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="geyser">
                     <label>Geyser</label>
                 </td>
-                <td><input type="text" name="quantity"></td>
-                <td><input type="text" name="geyser_power" value="2200W"></td>
-                <td><input type="text" name="geyser_hour" placeholder="Hour"></td>
-                <td><input type="text" name="geyser_minute" placeholder="Minute"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="quantity"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="geyser_power" value="2200W"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="geyser_hour" placeholder="Hour"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="geyser_minute" placeholder="Minute"></td>
                 <td><button class="addDuplicates" onclick="addGeyser(this)">+</button></td>
             </tr> 
 
             <tr>
                 <td class="appliance">
-                    <input type="checkbox" name="device" value="oven">
+                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="oven">
                     <label>Microwave Oven</label>
                 </td>
-                <td><input type="text" name="quantity"></td>
-                <td><input type="text" name="oven_power" value="1400W"></td>
-                <td><input type="text" name="oven_hour" placeholder="Hour"></td>
-                <td><input type="text" name="oven_minute" placeholder="Minute"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="quantity"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="oven_power" value="1400W"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="oven_hour" placeholder="Hour"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="oven_minute" placeholder="Minute"></td>
                 <td><button class="addDuplicates" onclick="addOven(this)">+</button></td>
             </tr> 
 
             <tr>
                 <td class="appliance">
-                    <input type="checkbox" name="device" value="waterpump">
+                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="waterpump">
                     <label>Water Pump</label>
                 </td>
-                <td><input type="text" name="quantity"></td>
-                <td><input type="text" name="waterpump_power" value="800W"></td>
-                <td><input type="text" name="waterpump_hour" placeholder="Hour"></td>
-                <td><input type="text" name="waterpump_minute" placeholder="Minute"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="quantity"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="waterpump_power" value="800W"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="waterpump_hour" placeholder="Hour"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="waterpump_minute" placeholder="Minute"></td>
                 <td><button class="addDuplicates" onclick="addWaterPump(this)">+</button></td>
             </tr>
 
             <tr>
                 <td class="appliance">
-                    <input type="checkbox" name="device" value="laptop">
+                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="laptop">
                     <label>Laptop</label>
                 </td>
-                <td><input type="text" name="quantity"></td>
-                <td><input type="text" name="laptop_power" value="100W"></td>
-                <td><input type="text" name="laptop_hour" placeholder="Hour"></td>
-                <td><input type="text" name="laptop_minute" placeholder="Minute"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="quantity"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="laptop_power" value="100W"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="laptop_hour" placeholder="Hour"></td>
+                <td><input type="text" oninput="calculateConsumption()" name="laptop_minute" placeholder="Minute"></td>
                 <td><button class="addDuplicates" onclick="addLaptop(this)">+</button></td>
             </tr>                    
           
@@ -167,7 +167,7 @@
         <div class="result">
             <div id="connectedloadDiv">
                 <label>Connected Load: </label>
-                <input type="text" name="connectedload" id="connectedload">
+                <input type="text" oninput="calculateConsumption()" name="connectedload" id="connectedload">
             </div>
             <!-- <div id="totalDaysDiv">
                 <label for="totalDays">Total Days: </label>
@@ -182,9 +182,6 @@
             <br>
             <p id="grandTotalResult"></p>
 
-             
-            <!-- <br>
-            <p id="bill"></p>         -->
         </div>
         <div>
         <button id="showButton">Show Bill Breakdown</button>
