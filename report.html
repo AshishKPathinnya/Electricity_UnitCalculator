@@ -16,42 +16,54 @@
 
         <table>
             <tr>
-                <th colspan="2">Details of Electricity Consumption</th>
+                <th>Consumer Category</th>
+                <th>Unit Consumption per Day</th>
+                <th>Unit Consumption per Month</th>
             </tr>
             <tr>
-                <td>Unit Consumption per Day</td>
-                <td id="per_day_unit"></td>
+                <td id="consumer_category" style="text-align: center"></td>
+                <td id="per_day_unit" style="text-align: center"></td>
+                <td id="per_month_unit" style="text-align: center"></td>
             </tr>
+        </table>
+
+        <table>
             <tr>
-                <td>Unit Consumption per Month</td>
-                <td id="per_month_unit"></td>
+                <th colspan="3">Billing Details</th>
             </tr>
             <tr>
                 <td>Fixed Charge</td>
+                <td id="fixed_charge_break">Connected Load x Fixed Charge Rate x 30</td>
                 <td id="fixed_charge"></td>
             </tr>
             <tr>
                 <td>Energy Charge</td>
+                <td id="energy_charge_break">Base Unit Rate x Total Units</td>
                 <td id="energy_charge"></td>
             </tr>
             <tr>
                 <td>Electricity Duty @5%</td>
+                <td id="electricity_duty_break">5% x (Fixed Charge + Energy Charge)</td>
                 <td id="electricity_duty"></td>
             </tr>
             <tr>
                 <td>FPPPA Charge</td>
+                <td id="fpppa_charge_break">FPPPA Charge x Total Units</td>
                 <td id="fpppa_charge"></td>
             </tr>
             <tr>
                 <td>Total Charge</td>
+                <td id="total_charge_break">Fixed Charge + Energy Charge + Electricity Duty + FPPPA Charge</td>
                 <td id="total_charge"></td>
             </tr>
             <tr>
                 <td>Government Subsidy</td>
+                <td id="govt_subsidy_break">Government Subsidy Rate x Total Units</td>
                 <td id="govt_subsidy"></td>
             </tr>
             <tr>
                 <td id="gTotal">Grand Total</td>
+                <td>Total Charge - Government Subsidy</td>
                 <td id="grand_total"></td>
             </tr>
         </table>

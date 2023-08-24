@@ -68,11 +68,13 @@ function calculateBill(perDayUnits, totalDays) {
     let grandTotal = 0;
 
     let totalUnits = perDayUnits * totalDays;
+    let category = "";
 
     const connectedLoadField = document.querySelector("#connectedload");
     const connectedLoad = parseFloat(connectedLoadField.value);
 
     if (connectedLoad == 0.5) {
+        category = "Jeevan Dhara"
         fixedCharge = connectedLoad * totalDays * 0.03 * fixedChargeJD;
         energyCharge = totalUnits * baseChargeJD;
         electricityDuty = electricityDutyCharge * (fixedCharge + energyCharge);
@@ -86,8 +88,12 @@ function calculateBill(perDayUnits, totalDays) {
 
         document.getElementById("showButton").style.display = "block";
         document.getElementById("reportButton").style.display = "block";
+
+        localStorage.setItem('fixedRate', fixedChargeJD);
+        localStorage.setItem('baseRate', baseChargeJD);
     }
     else if (connectedLoad > 0.5 && Math.round(connectedLoad) < 5) {
+        category = "Domestic-A";
         fixedCharge = connectedLoad * totalDays * 0.03 * fixedChargeDA;
 
         if (totalUnits <= 120) {
@@ -120,6 +126,7 @@ function calculateBill(perDayUnits, totalDays) {
         document.getElementById("reportButton").style.display = "block";
     }
     else if (Math.round(connectedLoad) >= 5 && connectedLoad <= 30) {
+        category = "Domestic-B";
         fixedCharge = connectedLoad * totalDays * 0.03 * fixedChargeDB;
         energyCharge = totalUnits * baseChargeDB;
         electricityDuty = electricityDutyCharge * (fixedCharge + energyCharge);
@@ -167,6 +174,8 @@ function calculateBill(perDayUnits, totalDays) {
     localStorage.setItem('grandTotal', grandTotal);
     localStorage.setItem('perDayUnits', perDayUnits);
     localStorage.setItem('totalUnits', totalUnits);
+    localStorage.setItem('connectedLoad', connectedLoad);
+    localStorage.setItem('category', category);
 }
 
 function displayResult(perDayUnits, totalDays) {
