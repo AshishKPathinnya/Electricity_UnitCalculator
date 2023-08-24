@@ -31,6 +31,16 @@ function showReport(){
 
 showReport();
 
+function showDateTime(){
+    var datetime = new Date();
+    var date = datetime.getDate() + '/' + (datetime.getMonth()+1) + '/' + datetime.getFullYear();
+    var time= datetime.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+    document.querySelector("#date_id").innerHTML = date;
+    document.querySelector("#time_id").innerHTML = time;
+}
+
+showDateTime();
+
 function generatePDF() {
     const element = document.getElementById('container');
     html2pdf().set({ html2canvas: { scale: 4 } }).from(element).save();
