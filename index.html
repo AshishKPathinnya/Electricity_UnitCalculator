@@ -17,11 +17,20 @@
 
     <header class="header">
         <div class="header-content">
+            <div class="electrical-grid-bg"></div>
+            <div class="power-lines-animation"></div>
             <div class="logo-section">
                 <img src="img/logo.png" alt="APDCL Logo" class="logo">
                 <div class="company-info">
                     <h1>Assam Power Distribution Company Limited</h1>
-                    <p class="tagline">Powering Progress, Empowering Lives</p>
+                    <p class="tagline">⚡ Powering Progress, Empowering Lives ⚡</p>
+                    <p class="license-info">License No: AERC/D/01/2003 | Established: 2003</p>
+                    <div class="company-stats">
+                        <span class="stat-item"><i class="fas fa-users"></i> 50L+ Customers</span>
+                        <span class="stat-item"><i class="fas fa-bolt"></i> 24/7 Service</span>
+                        <span class="stat-item"><i class="fas fa-phone"></i> 1912 Helpline</span>
+                        <span class="stat-item"><i class="fas fa-map-marker-alt"></i> Assam Wide</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -31,6 +40,15 @@
         <div class="calculator-header">
             <h2><i class="fas fa-calculator"></i> Electricity Consumption Calculator</h2>
             <p class="subtitle">Calculate your monthly electricity consumption and estimated bill</p>
+            <div class="safety-notice">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>For accurate billing, please refer to your latest electricity bill for connected load details</span>
+            </div>
+            <div class="energy-efficiency-banner">
+                <i class="fas fa-leaf"></i>
+                <span>Promote Energy Efficiency • Save Money • Reduce Carbon Footprint</span>
+                <i class="fas fa-recycle"></i>
+            </div>
         </div>
 
         <div class="calculator-card">
@@ -296,19 +314,25 @@
                         <i class="fas fa-plus"></i> Add Custom Appliance
                     </button>
                     <a href="chart.html" target="_blank" class="btn btn-outline">
-                        <i class="fas fa-list"></i> View Load Chart
+                        <i class="fas fa-chart-bar"></i> View Load Chart
                     </a>
+                    <button class="btn btn-info" onclick="showEnergyTips()">
+                        <i class="fas fa-lightbulb"></i> Energy Saving Tips
+                    </button>
+                    <button class="btn btn-warning" onclick="showTariffInfo()">
+                        <i class="fas fa-info-circle"></i> Tariff Information
+                    </button>
                 </div>
             </div>
 
             <div class="calculation-section">
                 <div class="connected-load-input">
                     <label for="connectedload">
-                        <i class="fas fa-plug"></i> Connected Load (kW)
+                        <i class="fas fa-plug"></i> Total Connected Load (kW)
                     </label>
                     <input type="number" oninput="calculateConsumption()" name="connectedload" id="connectedload" 
                            step="0.1" min="0.5" max="30" placeholder="Enter connected load">
-                    <small>Enter your total connected load between 0.5 - 30 kW</small>
+                    <small><i class="fas fa-info-circle"></i> Enter your sanctioned connected load as per your electricity connection (0.5 - 30 kW)</small>
                 </div>
 
                 <button class="btn btn-primary calculate-btn" onclick="calculateConsumption()">
@@ -338,7 +362,7 @@
 
                     <div class="result-card bill-result" id="billResult">
                         <div class="result-icon">
-                            <i class="fas fa-rupee-sign"></i>
+                            <i class="fas fa-file-invoice-dollar"></i>
                         </div>
                         <div class="result-content">
                             <h4>Estimated Monthly Bill</h4>
@@ -354,6 +378,12 @@
                     <a href="report.html" target="_blank" class="btn btn-secondary" id="reportButton">
                         <i class="fas fa-file-alt"></i> Detailed Report
                     </a>
+                    <button class="btn btn-success" onclick="showPaymentOptions()">
+                        <i class="fas fa-credit-card"></i> Payment Options
+                    </button>
+                    <button class="btn btn-info" onclick="showComplaintPortal()">
+                        <i class="fas fa-headset"></i> Lodge Complaint
+                    </button>
                 </div>
 
                 <div class="bill-breakdown" id="charges">
@@ -389,9 +419,221 @@
                         </div>
                     </div>
                 </div>
+                
+                <div class="electricity-info-panel" id="electricityInfo">
+                    <h4><i class="fas fa-info-circle"></i> Understanding Your Electricity Bill</h4>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <i class="fas fa-home"></i>
+                            <div>
+                                <strong>Consumer Categories</strong>
+                                <p>Jeevan Dhara (0.5kW), Domestic-A (0.5-5kW), Domestic-B (5-30kW)</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-calculator"></i>
+                            <div>
+                                <strong>Tariff Structure</strong>
+                                <p>Fixed charges + Energy charges + Electricity duty + FPPPA charges</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-gift"></i>
+                            <div>
+                                <strong>Government Subsidy</strong>
+                                <p>Available for Jeevan Dhara and Domestic-A (up to 120 units)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="power-quality-info">
+                    <h4><i class="fas fa-chart-line"></i> Power Quality Standards</h4>
+                    <div class="quality-metrics">
+                        <div class="metric-item">
+                            <span class="metric-label">Voltage:</span>
+                            <span class="metric-value">230V ±6%</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">Frequency:</span>
+                            <span class="metric-value">50Hz ±3%</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">Power Factor:</span>
+                            <span class="metric-value">≥0.9</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
+    
+    <!-- Energy Tips Modal -->
+    <div class="modal" id="energyTipsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-lightbulb"></i> Energy Saving Tips</h3>
+                <button class="close-btn" onclick="closeModal('energyTipsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>LED Lighting</h4>
+                        <p>Replace incandescent bulbs with LED lights to save up to 80% energy</p>
+                    </div>
+                    <div class="tip-item">
+                        <i class="fas fa-snowflake"></i>
+                        <h4>AC Efficiency</h4>
+                        <p>Set AC temperature to 24°C and use ceiling fans for better circulation</p>
+                    </div>
+                    <div class="tip-item">
+                        <i class="fas fa-plug"></i>
+                        <h4>Unplug Devices</h4>
+                        <p>Unplug electronics when not in use to avoid phantom power consumption</p>
+                    </div>
+                    <div class="tip-item">
+                        <i class="fas fa-star"></i>
+                        <h4>Star Rated Appliances</h4>
+                        <p>Choose 5-star rated appliances for maximum energy efficiency</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Payment Options Modal -->
+    <div class="modal" id="paymentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-credit-card"></i> Payment Options</h3>
+                <button class="close-btn" onclick="closeModal('paymentModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="payment-options">
+                    <div class="payment-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h4>Online Payment</h4>
+                        <p>Pay through APDCL website, mobile app, or UPI</p>
+                    </div>
+                    <div class="payment-item">
+                        <i class="fas fa-university"></i>
+                        <h4>Bank Payment</h4>
+                        <p>Visit authorized banks or use net banking services</p>
+                    </div>
+                    <div class="payment-item">
+                        <i class="fas fa-store"></i>
+                        <h4>Collection Centers</h4>
+                        <p>Pay at APDCL offices or authorized collection centers</p>
+                    </div>
+                    <div class="payment-item">
+                        <i class="fas fa-phone"></i>
+                        <h4>Customer Care</h4>
+                        <p>Call 1912 for payment assistance and queries</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Tariff Information Modal -->
+    <div class="modal" id="tariffModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-info-circle"></i> Current Tariff Rates (2024-25)</h3>
+                <button class="close-btn" onclick="closeModal('tariffModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="tariff-table">
+                    <h4>Domestic Tariff Structure</h4>
+                    <table class="tariff-rates">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Connected Load</th>
+                                <th>Fixed Charge</th>
+                                <th>Energy Charge</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Jeevan Dhara</td>
+                                <td>0.5 kW</td>
+                                <td>₹40/month</td>
+                                <td>₹5.05/unit</td>
+                            </tr>
+                            <tr>
+                                <td>Domestic-A</td>
+                                <td>0.5-5 kW</td>
+                                <td>₹70/kW/month</td>
+                                <td>₹5.70-7.90/unit (slab)</td>
+                            </tr>
+                            <tr>
+                                <td>Domestic-B</td>
+                                <td>5-30 kW</td>
+                                <td>₹70/kW/month</td>
+                                <td>₹7.45/unit</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="tariff-note">
+                        <i class="fas fa-info-circle"></i>
+                        Rates include Electricity Duty (5%) and FPPPA charges. Government subsidy applicable for eligible categories.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Complaint Portal Modal -->
+    <div class="modal" id="complaintModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-headset"></i> Customer Support & Complaints</h3>
+                <button class="close-btn" onclick="closeModal('complaintModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="support-options">
+                    <div class="support-item urgent">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h4>Emergency Services</h4>
+                        <p>Power outage, electrical hazards</p>
+                        <div class="contact-info">
+                            <span><i class="fas fa-phone"></i> 1912 (24x7)</span>
+                            <span><i class="fas fa-mobile-alt"></i> Emergency Helpline</span>
+                        </div>
+                    </div>
+                    <div class="support-item">
+                        <i class="fas fa-file-alt"></i>
+                        <h4>Billing Queries</h4>
+                        <p>Bill disputes, payment issues</p>
+                        <div class="contact-info">
+                            <span><i class="fas fa-envelope"></i> billing@apdcl.org</span>
+                            <span><i class="fas fa-globe"></i> www.apdcl.org</span>
+                        </div>
+                    </div>
+                    <div class="support-item">
+                        <i class="fas fa-tools"></i>
+                        <h4>Technical Support</h4>
+                        <p>Meter issues, connection problems</p>
+                        <div class="contact-info">
+                            <span><i class="fas fa-phone"></i> 0361-2345678</span>
+                            <span><i class="fas fa-clock"></i> 9 AM - 6 PM</span>
+                        </div>
+                    </div>
+                    <div class="support-item">
+                        <i class="fas fa-plus-circle"></i>
+                        <h4>New Connection</h4>
+                        <p>Apply for new electricity connection</p>
+                        <div class="contact-info">
+                            <span><i class="fas fa-globe"></i> Online Application</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Visit nearest office</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

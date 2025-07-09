@@ -855,7 +855,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Initialize all enhancements
-    createFloatingParticles();
+    createElectricalParticles();
     initSmoothScroll();
     initScrollAnimations();
     initInputEnhancements();
@@ -867,6 +867,84 @@ document.addEventListener('DOMContentLoaded', function() {
         item.style.animationDelay = `${index * 0.1}s`;
     });
 });
+
+// Modal functions
+function showEnergyTips() {
+    document.getElementById('energyTipsModal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+function showPaymentOptions() {
+    document.getElementById('paymentModal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+function showTariffInfo() {
+    document.getElementById('tariffModal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+function showComplaintPortal() {
+    document.getElementById('complaintModal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+    const energyModal = document.getElementById('energyTipsModal');
+    const paymentModal = document.getElementById('paymentModal');
+    const tariffModal = document.getElementById('tariffModal');
+    const complaintModal = document.getElementById('complaintModal');
+    
+    if (event.target === energyModal) {
+        closeModal('energyTipsModal');
+    }
+    if (event.target === paymentModal) {
+        closeModal('paymentModal');
+    }
+    if (event.target === tariffModal) {
+        closeModal('tariffModal');
+    }
+    if (event.target === complaintModal) {
+        closeModal('complaintModal');
+    }
+}
+
+// Enhanced particle system with electrical theme
+function createElectricalParticles() {
+    const particlesContainer = document.createElement('div');
+    particlesContainer.className = 'floating-particles';
+    document.body.appendChild(particlesContainer);
+
+    function createParticle() {
+        const particle = document.createElement('div');
+        const particleTypes = ['particle', 'spark-particle', 'energy-particle'];
+        const randomType = particleTypes[Math.floor(Math.random() * particleTypes.length)];
+        
+        particle.className = randomType;
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 6 + 's';
+        particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        
+        // Add electrical spark effect occasionally
+        if (Math.random() < 0.3) {
+            particle.classList.add('spark-effect');
+        }
+        
+        particlesContainer.appendChild(particle);
+
+        setTimeout(() => {
+            particle.remove();
+        }, 6000);
+    }
+
+    setInterval(createParticle, 200);
+}
 
 // Enhanced show/hide bill breakdown with smooth animation
 document.getElementById("showButton").addEventListener("click", function() {
@@ -962,6 +1040,79 @@ const additionalStyles = `
 // Inject additional styles
 const styleSheet = document.createElement('style');
 styleSheet.textContent = additionalStyles;
+
+// Add electrical particle styles
+const electricalParticleStyles = `
+    .spark-particle {
+        position: absolute;
+        width: 3px;
+        height: 8px;
+        background: linear-gradient(45deg, #fbbf24, #f59e0b);
+        border-radius: 50%;
+        opacity: 0.6;
+        animation: spark-float 4s infinite linear;
+        box-shadow: 0 0 6px #fbbf24;
+    }
+    
+    .energy-particle {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: #3b82f6;
+        border-radius: 50%;
+        opacity: 0.8;
+        animation: energy-float 5s infinite linear;
+        box-shadow: 0 0 4px #3b82f6;
+    }
+    
+    .spark-effect {
+        animation: spark-flash 0.5s infinite alternate;
+    }
+    
+    @keyframes spark-float {
+        0% {
+            transform: translateY(100vh) rotate(0deg) scale(1);
+            opacity: 0;
+        }
+        10% {
+            opacity: 0.6;
+        }
+        90% {
+            opacity: 0.6;
+        }
+        100% {
+            transform: translateY(-100px) rotate(180deg) scale(0.5);
+            opacity: 0;
+        }
+    }
+    
+    @keyframes energy-float {
+        0% {
+            transform: translateY(100vh) translateX(0px);
+            opacity: 0;
+        }
+        10% {
+            opacity: 0.8;
+        }
+        50% {
+            transform: translateY(50vh) translateX(20px);
+        }
+        90% {
+            opacity: 0.8;
+        }
+        100% {
+            transform: translateY(-100px) translateX(-20px);
+            opacity: 0;
+        }
+    }
+    
+    @keyframes spark-flash {
+        0% { opacity: 0.6; }
+        100% { opacity: 1; box-shadow: 0 0 12px #fbbf24; }
+    }
+`;
+
+styleSheet.textContent += electricalParticleStyles;
 document.head.appendChild(styleSheet);
 
 

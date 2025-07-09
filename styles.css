@@ -18,12 +18,16 @@ html {
     --success-color: #10b981;
     --warning-color: #f59e0b;
     --error-color: #ef4444;
+    --info-color: #0ea5e9;
+    --electric-blue: #1e40af;
+    --electric-yellow: #fbbf24;
     
     --bg-primary: #ffffff;
     --bg-secondary: #f8fafc;
     --bg-tertiary: #f1f5f9;
     --bg-card: #ffffff;
-    --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --bg-gradient: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #0ea5e9 100%);
+    --electric-gradient: linear-gradient(45deg, #fbbf24, #f59e0b, #dc2626);
     
     --text-primary: #0f172a;
     --text-secondary: #475569;
@@ -60,7 +64,7 @@ html {
     --bg-secondary: #1e293b;
     --bg-tertiary: #334155;
     --bg-card: #1e293b;
-    --bg-gradient: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%);
+    --bg-gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #0ea5e9 100%);
     
     --text-primary: #f8fafc;
     --text-secondary: #cbd5e1;
@@ -159,11 +163,12 @@ body {
 
 /* Header */
 .header {
-    background: var(--bg-gradient);
+    background: linear-gradient(135deg, #0f172a 0%, #1e40af 50%, #3b82f6 100%);
     color: white;
     padding: 3rem 0;
     position: relative;
     overflow: hidden;
+    border-bottom: 4px solid var(--electric-yellow);
 }
 
 .header::before {
@@ -173,7 +178,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="electrical-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(251,191,36,0.1)" stroke-width="0.5"/><circle cx="10" cy="10" r="1" fill="rgba(251,191,36,0.2)"/></pattern></defs><rect width="100" height="100" fill="url(%23electrical-grid)"/></svg>');
     opacity: 0.3;
     animation: float 6s ease-in-out infinite;
 }
@@ -185,8 +190,24 @@ body {
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(251,191,36,0.1) 0%, transparent 70%);
     animation: rotate 20s linear infinite;
+}
+
+.electrical-grid-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><pattern id="power-lines" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M0,20 Q10,10 20,20 T40,20" stroke="rgba(251,191,36,0.15)" stroke-width="2" fill="none"/><circle cx="20" cy="20" r="2" fill="rgba(251,191,36,0.2)"/></pattern></defs><rect width="200" height="200" fill="url(%23power-lines)"/></svg>');
+    opacity: 0.4;
+    animation: electrical-flow 8s linear infinite;
+}
+
+@keyframes electrical-flow {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(40px); }
 }
 
 @keyframes float {
@@ -252,10 +273,16 @@ body {
     font-weight: 700;
     margin-bottom: 0.5rem;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(45deg, #ffffff, #e0e7ff);
+    background: linear-gradient(45deg, #ffffff, #fbbf24, #ffffff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    animation: text-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes text-glow {
+    from { filter: drop-shadow(0 0 5px rgba(251, 191, 36, 0.5)); }
+    to { filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.8)); }
 }
 
 .tagline {
@@ -263,6 +290,61 @@ body {
     opacity: 0.9;
     font-weight: 300;
     animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+.license-info {
+    font-size: 0.875rem;
+    opacity: 0.8;
+    font-weight: 400;
+    margin-top: 0.25rem;
+    font-style: italic;
+    animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+.power-lines-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100"><defs><pattern id="transmission-lines" width="100" height="50" patternUnits="userSpaceOnUse"><path d="M0,25 L25,15 L50,25 L75,15 L100,25" stroke="rgba(251,191,36,0.2)" stroke-width="2" fill="none"/><circle cx="25" cy="15" r="3" fill="rgba(251,191,36,0.3)"/><circle cx="75" cy="15" r="3" fill="rgba(251,191,36,0.3)"/></pattern></defs><rect width="400" height="100" fill="url(%23transmission-lines)"/></svg>');
+    opacity: 0.3;
+    animation: transmission-flow 10s linear infinite;
+}
+
+@keyframes transmission-flow {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(100px); }
+}
+
+.company-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    transition: var(--transition);
+}
+
+.stat-item:hover {
+    background: rgba(251, 191, 36, 0.2);
+    transform: translateY(-2px);
+}
+
+.stat-item i {
+    color: var(--electric-yellow);
 }
 
 @keyframes fadeInUp {
@@ -314,6 +396,65 @@ body {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: slideInUp 0.8s ease-out 0.4s both;
+}
+
+.energy-efficiency-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--success-color), #059669);
+    color: white;
+    border-radius: var(--radius-xl);
+    font-weight: 500;
+    animation: pulse-green 3s infinite;
+}
+
+@keyframes pulse-green {
+    0%, 100% { box-shadow: 0 0 10px rgba(16, 185, 129, 0.3); }
+    50% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.6); }
+}
+
+.energy-efficiency-banner i {
+    font-size: 1.25rem;
+    animation: rotate-slow 4s linear infinite;
+}
+
+.safety-notice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, var(--warning-color), #f59e0b);
+    color: white;
+    border-radius: var(--radius-lg);
+    font-weight: 500;
+    font-size: 0.875rem;
+    animation: pulse-warning 2s infinite;
+}
+
+@keyframes pulse-warning {
+    0%, 100% { box-shadow: 0 0 10px rgba(245, 158, 11, 0.3); }
+    50% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.6); }
+}
+
+.safety-notice i {
+    font-size: 1rem;
+    animation: flash 1.5s infinite;
+}
+
+@keyframes flash {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0.5; }
+}
+
+@keyframes rotate-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 @keyframes slideInUp {
@@ -901,6 +1042,30 @@ body {
     box-shadow: var(--shadow-lg);
 }
 
+.btn-info {
+    background: var(--info-color);
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-info:hover {
+    background: #0284c7;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-warning {
+    background: var(--warning-color);
+    color: white;
+    box-shadow: var(--shadow-md);
+}
+
+.btn-warning:hover {
+    background: #d97706;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: var(--shadow-lg);
+}
+
 .calculate-btn {
     width: 100%;
     padding: 1.5rem 2rem;
@@ -1161,6 +1326,432 @@ body {
     color: white;
 }
 
+/* Electricity Info Panel */
+.electricity-info-panel {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    margin-top: 2rem;
+    border-left: 4px solid var(--electric-yellow);
+}
+
+.electricity-info-panel h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.electricity-info-panel h4 i {
+    color: var(--info-color);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.info-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-color);
+}
+
+.info-item i {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-top: 0.25rem;
+}
+
+.info-item strong {
+    color: var(--text-primary);
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+    display: block;
+}
+
+.info-item p {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.4;
+}
+
+/* Power Quality Info */
+.power-quality-info {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: 2rem;
+    margin-top: 2rem;
+    border-left: 4px solid var(--primary-color);
+}
+
+.power-quality-info h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.power-quality-info h4 i {
+    color: var(--primary-color);
+}
+
+.quality-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.metric-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.metric-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-color);
+}
+
+.metric-label {
+    font-weight: 500;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.metric-value {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1rem;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+    background: var(--bg-card);
+    margin: 5% auto;
+    padding: 0;
+    border-radius: var(--radius-xl);
+    width: 90%;
+    max-width: 600px;
+    box-shadow: var(--shadow-xl);
+    animation: slideInDown 0.3s ease-out;
+    border: 1px solid var(--border-color);
+}
+
+.modal-header {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-gradient);
+    color: white;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    padding: 0;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.tip-item {
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.tip-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--success-color);
+}
+
+.tip-item i {
+    font-size: 2rem;
+    color: var(--success-color);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.tip-item h4 {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+}
+
+.tip-item p {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.4;
+}
+
+.payment-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.payment-item {
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.payment-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-color);
+}
+
+.payment-item i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.payment-item h4 {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+}
+
+.payment-item p {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.4;
+}
+
+/* Tariff Table Styles */
+.tariff-table {
+    margin-bottom: 2rem;
+}
+
+.tariff-table h4 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    text-align: center;
+}
+
+.tariff-rates {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.tariff-rates th {
+    background: var(--bg-gradient);
+    color: white;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tariff-rates td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+}
+
+.tariff-rates tr:hover {
+    background: var(--bg-secondary);
+}
+
+.tariff-rates tr:last-child td {
+    border-bottom: none;
+}
+
+.tariff-note {
+    background: var(--bg-secondary);
+    padding: 1rem;
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--info-color);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.tariff-note i {
+    color: var(--info-color);
+    margin-top: 0.125rem;
+}
+
+/* Support Options Styles */
+.support-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.support-item {
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+    text-align: center;
+}
+
+.support-item.urgent {
+    border-color: var(--error-color);
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(220, 38, 38, 0.05));
+}
+
+.support-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-color);
+}
+
+.support-item.urgent:hover {
+    border-color: var(--error-color);
+    box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.2);
+}
+
+.support-item i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.support-item i {
+    color: var(--primary-color);
+}
+
+.support-item.urgent i {
+    color: var(--error-color);
+    animation: urgent-pulse 1.5s infinite;
+}
+
+@keyframes urgent-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.support-item h4 {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+}
+
+.support-item p {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.contact-info span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.contact-info i {
+    color: var(--primary-color);
+    font-size: 1rem;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .theme-toggle {
@@ -1194,6 +1785,15 @@ body {
     
     .company-info h1 {
         font-size: 1.75rem;
+    }
+    
+    .company-stats {
+        gap: 1rem;
+    }
+    
+    .stat-item {
+        font-size: 0.75rem;
+        padding: 0.375rem 0.75rem;
     }
     
     .calculator-header h2 {
@@ -1264,6 +1864,43 @@ body {
     
     .company-info h1 {
         font-size: 1.5rem;
+    }
+    
+    .company-stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+    
+    .tips-grid,
+    .payment-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .support-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .quality-metrics {
+        grid-template-columns: 1fr;
+    }
+    
+    .tariff-rates {
+        font-size: 0.75rem;
+    }
+    
+    .tariff-rates th,
+    .tariff-rates td {
+        padding: 0.75rem 0.5rem;
     }
 }
 
