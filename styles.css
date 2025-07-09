@@ -1752,6 +1752,35 @@ body {
     font-size: 1rem;
 }
 
+/* Payment and support modal buttons */
+.payment-item .btn,
+.support-item .btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+    margin-top: 0.75rem;
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+}
+
+.payment-item .btn:hover,
+.support-item .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-success {
+    background: var(--success-color);
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-success:hover {
+    background: #059669;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: var(--shadow-lg);
+}
 /* Responsive Design */
 @media (max-width: 768px) {
     .theme-toggle {

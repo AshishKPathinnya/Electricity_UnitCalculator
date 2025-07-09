@@ -889,6 +889,26 @@ function showComplaintPortal() {
     document.body.style.overflow = 'hidden';
 }
 
+// Redirect functions for APDCL services
+function redirectToOnlinePayment() {
+    window.open('https://www.apdcl.org/website/PayBill', '_blank');
+}
+
+function redirectToCustomerCare() {
+    window.open('https://www.apdcl.org/cgrf/login', '_blank');
+}
+
+function redirectToBankPayment() {
+    window.open('https://www.apdclrms.com/easypay/login', '_blank');
+}
+
+function redirectToTechnicalSupport() {
+    window.open('https://www.bijuleebandhu.com/complaints', '_blank');
+}
+
+function redirectToNewConnection() {
+    window.open('https://www.apdcl.org/website/ApplyNewConn', '_blank');
+}
 function closeModal(modalId) {
     document.getElementById(modalId).style.display = 'none';
     document.body.style.overflow = 'auto';
