@@ -1,219 +1,783 @@
-body {
-    font-family: Arial, sans-serif;
+/* Modern CSS Reset and Base Styles */
+* {
     margin: 0;
     padding: 0;
-    background-color: #e3e3e3;
+    box-sizing: border-box;
 }
 
-.top-banner {
-    background-color: #4287f5;
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
+:root {
+    /* Light theme colors */
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --secondary-color: #64748b;
+    --accent-color: #0ea5e9;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --error-color: #ef4444;
+    
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8fafc;
+    --bg-tertiary: #f1f5f9;
+    --bg-card: #ffffff;
+    
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    
+    --border-color: #e2e8f0;
+    --border-hover: #cbd5e1;
+    
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    
+    --radius-sm: 0.375rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    
+    --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.themeButtonContainer {
-    position: relative;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-top: 10px; /* Adjust this margin as needed */
+[data-theme="dark"] {
+    --primary-color: #3b82f6;
+    --primary-hover: #2563eb;
+    --secondary-color: #94a3b8;
+    --accent-color: #0ea5e9;
+    
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    --bg-card: #1e293b;
+    
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    
+    --border-color: #334155;
+    --border-hover: #475569;
 }
 
-.themeButton, .themeButton img {
-    position: absolute;
-    top: 0px;
-    right: 10px;
-    z-index: 999;
-    width: 30px; /* Adjust the width */
-    height: 30px;
-    background-color: transparent;
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: var(--transition);
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+}
+
+.theme-btn {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
     border: none;
-}  
+    background: var(--bg-card);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
 
-/* .themeButton img {
-    width: 30px;
-    height: 30px;
-    top: 10px;
-    right: 10px;    
-} */
+.theme-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    color: white;
+    padding: 2rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    justify-content: center;
+}
 
 .logo {
     width: 80px;
     height: 80px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    background: white;
+    padding: 0.5rem;
+}
+
+.company-info h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tagline {
+    font-size: 1rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+/* Main Container */
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.calculator-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.calculator-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.calculator-header h2 i {
+    color: var(--primary-color);
+}
+
+.subtitle {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+/* Calculator Card */
+.calculator-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+/* Appliances Section */
+.appliances-section {
+    padding: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.appliances-section h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.appliances-section h3 i {
+    color: var(--primary-color);
+}
+
+/* Appliance Grid */
+.appliance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.appliance-item {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    transition: var(--transition);
+}
+
+.appliance-item:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-md);
+}
+
+.appliance-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.appliance-icon {
+    width: 3rem;
+    height: 3rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.25rem;
+}
+
+.appliance-info {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Custom Checkbox */
+.appliance-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--text-primary);
+    font-size: 1.125rem;
+}
+
+.appliance-label input[type="checkbox"] {
+    display: none;
+}
+
+.checkmark {
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    position: relative;
+    transition: var(--transition);
+}
+
+.appliance-label input[type="checkbox"]:checked + .checkmark {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.appliance-label input[type="checkbox"]:checked + .checkmark::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 0.875rem;
+    font-weight: bold;
+}
+
+.add-more-btn {
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--text-secondary);
+}
+
+.add-more-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* Appliance Controls */
+.appliance-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.time-inputs {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.input-group input,
+.input-group select {
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    transition: var(--transition);
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.input-group input[readonly] {
+    background: var(--bg-tertiary);
+    color: var(--text-muted);
+}
+
+/* Additional Appliances */
+.additional-appliances {
+    margin: 2rem 0;
+}
+
+.custom-appliance {
+    background: var(--bg-tertiary);
+    border: 1px dashed var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.delete-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    background: var(--error-color);
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-btn:hover {
+    background: #dc2626;
+    transform: scale(1.1);
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Calculation Section */
+.calculation-section {
+    padding: 2rem;
+}
+
+.connected-load-input {
+    margin-bottom: 2rem;
+}
+
+.connected-load-input label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    font-size: 1.125rem;
+}
+
+.connected-load-input label i {
+    color: var(--primary-color);
+}
+
+.connected-load-input input {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.connected-load-input input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.connected-load-input small {
     display: block;
-    margin: 0 auto 10px;
+    margin-top: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.875rem;
 }
 
-.container {
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-    text-align: center;
-    color: #333;
-}
-
-table {
-    border-collapse: separate;
-    border-spacing: 0 15px;
-  }
-  
-th {
-    background-color: #4287f5;
-    color: white;
-    border-left: 2px solid white;
-  }
-  
-th, td {
-    width: 100%;
-    text-align: center;
-    padding: 5px;
-  }
-
-  select {
-    width: 100%;
-    appearance: none;
-    padding-top: 2px;
-    padding-bottom: 2px;
-  }
-
-.appliance {
-    text-align: left;
-    padding-left: 2%;
-  }
-
-  .addDuplicates {
-    border: 2px solid #4287f5;
-    border-radius: 50%;
-    padding: -2px 10px; 
-    font-size: 16px;
-    font-weight: bolder;
-    color: #4287f5;
-    background-color: white;
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    font-size: 0.875rem;
     cursor: pointer;
-    outline: none;
-  }
-
-  .deleteRow {
-    border: 2px solid orangered;
-    border-radius: 50%;
-    padding: -2px 5px; 
-    font-size: 16px;
-    font-weight: bolder;
-    color: orangered;
-    background-color: white;
-    cursor: pointer;
-    outline: none;
-  }
-
-#applianceRowDiv button{
-    margin-left: 35px;
-    margin-bottom: 30px;
-    border: none;
-    font-size: medium;
-    font-weight: bolder;
-    color: #4287f5;
-    background-color: white;
-  }
-
-  #viewchart button{
-    margin-left: 35px;
-    margin-bottom: 30px;
-    border: none;
-    font-size: medium;
-    font-weight: bolder;
-    color: #4287f5;
-    background-color: white;
-  }
-
-.result {
-    text-align: center;
-    padding-top: 20px;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
+    transition: var(--transition);
+    text-decoration: none;
+    justify-content: center;
 }
 
-.result button {
-    background-color: #4287f5;
+.btn-primary {
+    background: var(--primary-color);
     color: white;
-    padding: 10px;
-    border-radius: .5rem;
-    font-size: medium;
-    box-sizing: border-box;
-    border: 0;
 }
 
-#total_result {
-    font-size: 20px;
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
 }
 
-#monthly_result {
-    font-size: 18px;
+.btn-secondary {
+    background: var(--secondary-color);
+    color: white;
 }
 
-#grandTotalResult {
-  font-size: 18px;
+.btn-secondary:hover {
+    background: #475569;
+    transform: translateY(-1px);
 }
 
-.otherAppliance {
-    border: none;
-    font-size: 14px;
+.btn-outline {
+    background: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
 }
 
-#connectedloadDiv {
-  margin-bottom: 30px;
+.btn-outline:hover {
+    background: var(--primary-color);
+    color: white;
 }
-/* #fixedchargeDiv,
-    #energychargeDiv,
-    #electricitydutyDiv,
-    #fpppaDiv,
-    #totalDiv,
-    #govtsubsidyDiv {
+
+.calculate-btn {
+    width: 100%;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+
+/* Results Section */
+.results-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.result-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: var(--transition);
+}
+
+.result-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.bill-result {
+    background: linear-gradient(135deg, var(--success-color), #059669);
+    color: white;
+    border-color: var(--success-color);
+}
+
+.result-icon {
+    width: 3rem;
+    height: 3rem;
+    background: var(--primary-color);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.bill-result .result-icon {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.result-content h4 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: var(--text-secondary);
+}
+
+.bill-result .result-content h4 {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.result-content p {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.bill-result .result-content p {
+    color: white;
+}
+
+/* Bill Actions */
+.bill-actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.bill-actions .btn {
+    flex: 1;
+    min-width: 200px;
+}
+
+#showButton,
+#reportButton {
+    display: none;
+}
+
+/* Bill Breakdown */
+.bill-breakdown {
+    display: none;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+}
+
+.bill-breakdown h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.bill-breakdown h4 i {
+    color: var(--primary-color);
+}
+
+.breakdown-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.breakdown-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.breakdown-item.total {
+    background: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    border-color: var(--primary-color);
+}
+
+.breakdown-item .label {
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.breakdown-item.total .label {
+    color: white;
+}
+
+.breakdown-item .value {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.breakdown-item .value.subsidy {
+    color: var(--success-color);
+}
+
+.breakdown-item.total .value {
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header-content {
+        padding: 0 1rem;
+    }
+    
+    .logo-section {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .company-info h1 {
+        font-size: 1.5rem;
+    }
+    
+    .calculator-header h2 {
+        font-size: 2rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .appliance-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .appliance-controls {
+        grid-template-columns: 1fr;
+    }
+    
+    .time-inputs {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .results-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .bill-actions {
+        flex-direction: column;
+    }
+    
+    .bill-actions .btn {
+        min-width: auto;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-container {
+        padding: 1rem 0.5rem;
+    }
+    
+    .calculator-card {
+        margin: 0 0.5rem;
+    }
+    
+    .appliances-section,
+    .calculation-section {
+        padding: 1rem;
+    }
+    
+    .appliance-item {
+        padding: 1rem;
+    }
+    
+    .time-inputs {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Animation for smooth transitions */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.appliance-item,
+.result-card,
+.bill-breakdown {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Focus styles for accessibility */
+button:focus,
+input:focus,
+select:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    .theme-toggle,
+    .action-buttons,
+    .bill-actions {
         display: none;
-    } */
-
-#charges {
-  display:none;
-  margin: 20px auto;
-  text-align: center;
-}
-
-#showButton{
-  display: none;
-  margin: 20px auto; 
-  font-weight: medium;
-  color: white;
-  background-color: #4287f5;
-  padding: 10px;
-  border-radius: .5rem;
-  font-size: medium;
-  box-sizing: border-box;
-  border: 0;
-  width: 190px;
-  height: 40px;
-}
-
-#reportButton{
-  display: none;
-  margin: 20px auto; 
-  font-weight: medium;
-  color: white;
-  background-color: #4287f5;
-  padding: 10px;
-  border-radius: .5rem;
-  font-size: medium;
-  box-sizing: border-box;
-  border: 0;
-  width: 190px;
-  height: 40px;
-}
-
-a {
-  text-decoration: none;
+    }
+    
+    .calculator-card {
+        box-shadow: none;
+        border: 1px solid #000;
+    }
 }

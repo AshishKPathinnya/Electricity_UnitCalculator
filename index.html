@@ -1,228 +1,397 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Electricity Consumption Calculator</title>
-    <!-- <link rel="stylesheet" type="text/css" href="style2.css"> -->
-    <link id="theme" rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="top-banner">
-        <div class="themeButtonContainer">
-            <button class="themeButton" onclick="toggleTheme(event)">
-                <img src="img/sunwhiteicon.png" id="themeImage" alt="Light Mode">
-            </button>
-        </div>        
-        <img src="img/logo.png" alt="APDCL Logo" class="logo">
-        <h1>Assam Power Distribution Company Limited</h1>
+    <div class="theme-toggle">
+        <button class="theme-btn" onclick="toggleTheme(event)" aria-label="Toggle theme">
+            <i class="fas fa-sun" id="theme-icon"></i>
+        </button>
     </div>
-    <div class="container">
 
-        <h2>Electricity Consumption Calculator</h2>        
-
-        <table>
-            <tr>
-                <th>Appliances</th>
-                <th>Quantity</th>
-                <th>Load</th>
-                <th colspan="2">Time</th>
-            </tr>
-            
-            <tr>
-                <td class="appliance">
-                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="light">
-                    <label>Light</label>
-                </td>
-                <td><input type="text" oninput="calculateConsumption()" name="quantity"></td>
-                <td>
-                    <select onchange="calculateConsumption()" id="lightWatt" name="light_power">
-                        <option value="5">5W</option>
-                        <option value="9">9W</option>
-                        <option value="15">15W</option>
-                        <option value="20">20W</option>
-                        <option value="30">30W</option>
-                        <option value="40">40W</option>
-                        <option value="60">60W</option>
-                        <option value="100">100W</option>
-                    </select>
-                </td>
-                <td><input type="text" oninput="calculateConsumption()" name="light_hour" placeholder="Hour"></td>
-                <td><input type="text" oninput="calculateConsumption()" name="light_minute" placeholder="Minute" ></td>
-                <td><button class="addDuplicates" onclick="addLight(this)">+</button></td>
-            </tr>
-
-            <tr>
-                <td class="appliance">
-                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="fan">
-                    <label>Fan</label>
-                </td>
-                <td><input type="text" oninput="calculateConsumption()" name="quantity"></td>
-                <td><input type="text" oninput="calculateConsumption()" name="fan_power" value="75W"></td>
-                <td><input type="text" oninput="calculateConsumption()" name="fan_hour" placeholder="Hour"></td>
-                <td><input type="text" oninput="calculateConsumption()" name="fan_minute" placeholder="Minute"></td>
-                <td><button class="addDuplicates" onclick="addFan(this)">+</button></td>
-            </tr>
-
-            <tr>
-                <td class="appliance">
-                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="refrigerator">
-                    <label>Refrigerator</label>
-                </td>
-                <td><input type="text" oninput="calculateConsumption()" name="quantity"></td>
-                <td><input type="text" oninput="calculateConsumption()" name="refrigerator_power" value="300W"></td>
-                <td><input type="text" oninput="calculateConsumption()" name="refrigerator_hour" placeholder="Hour"></td>
-                <td><input type="text" oninput="calculateConsumption()" name="refrigerator_minute" placeholder="Minute"></td>
-                <td><button class="addDuplicates" onclick="addRefrigerator(this)">+</button></td>
-            </tr>
-
-            <tr>
-                <td class="appliance">
-                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="television">
-                    <label>Television</label>
-                </td>
-                <td><input type="text" oninput="calculateConsumption()" name="quantity"></td>
-                <td><input type="text" oninput="calculateConsumption()" name="television_power" value="60W"></td>
-                <td><input type="text" oninput="calculateConsumption()" name="television_hour" placeholder="Hour"></td>
-                <td><input type="text" oninput="calculateConsumption()" name="television_minute" placeholder="Minute"></td>
-                <td><button class="addDuplicates" onclick="addTelevision(this)">+</button></td>
-            </tr>
-            
-            <tr>
-                <td class="appliance">
-                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="airconditioner">
-                    <label>Air Conditioner</label>
-                </td>
-                <td><input type="text" oninput="calculateConsumption()" name="quantity"></td>
-                <td>
-                    <select onchange="calculateConsumption()" id="airconditionerWatt" name="airconditioner_power">
-                        <option value="1200">1200W</option>
-                        <option value="1700">1700W</option>
-                        <option value="2300">2300W</option>
-                        <option value="1100">1100W</option>
-                        <option value="1600">1600W</option>
-                        <option value="2100">2100W</option>
-                    </select>
-                </td>
-                <td><input type="text" oninput="calculateConsumption()" name="airconditioner_hour" placeholder="Hour"></td>
-                <td><input type="text" oninput="calculateConsumption()" name="airconditioner_minute" placeholder="Minute"></td>
-                <td><button class="addDuplicates" onclick="addAirConditioner(this)">+</button></td>
-            </tr> 
-
-            <tr>
-                <td class="appliance">
-                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="geyser">
-                    <label>Geyser</label>
-                </td>
-                <td><input type="text" oninput="calculateConsumption()" name="quantity"></td>
-                <td><input type="text" oninput="calculateConsumption()" name="geyser_power" value="2200W"></td>
-                <td><input type="text" oninput="calculateConsumption()" name="geyser_hour" placeholder="Hour"></td>
-                <td><input type="text" oninput="calculateConsumption()" name="geyser_minute" placeholder="Minute"></td>
-                <td><button class="addDuplicates" onclick="addGeyser(this)">+</button></td>
-            </tr> 
-
-            <tr>
-                <td class="appliance">
-                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="oven">
-                    <label>Microwave Oven</label>
-                </td>
-                <td><input type="text" oninput="calculateConsumption()" name="quantity"></td>
-                <td><input type="text" oninput="calculateConsumption()" name="oven_power" value="1400W"></td>
-                <td><input type="text" oninput="calculateConsumption()" name="oven_hour" placeholder="Hour"></td>
-                <td><input type="text" oninput="calculateConsumption()" name="oven_minute" placeholder="Minute"></td>
-                <td><button class="addDuplicates" onclick="addOven(this)">+</button></td>
-            </tr> 
-
-            <tr>
-                <td class="appliance">
-                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="waterpump">
-                    <label>Water Pump</label>
-                </td>
-                <td><input type="text" oninput="calculateConsumption()" name="quantity"></td>
-                <td><input type="text" oninput="calculateConsumption()" name="waterpump_power" value="800W"></td>
-                <td><input type="text" oninput="calculateConsumption()" name="waterpump_hour" placeholder="Hour"></td>
-                <td><input type="text" oninput="calculateConsumption()" name="waterpump_minute" placeholder="Minute"></td>
-                <td><button class="addDuplicates" onclick="addWaterPump(this)">+</button></td>
-            </tr>
-
-            <tr>
-                <td class="appliance">
-                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="laptop">
-                    <label>Laptop</label>
-                </td>
-                <td><input type="text" oninput="calculateConsumption()" name="quantity"></td>
-                <td><input type="text" oninput="calculateConsumption()" name="laptop_power" value="100W"></td>
-                <td><input type="text" oninput="calculateConsumption()" name="laptop_hour" placeholder="Hour"></td>
-                <td><input type="text" oninput="calculateConsumption()" name="laptop_minute" placeholder="Minute"></td>
-                <td><button class="addDuplicates" onclick="addLaptop(this)">+</button></td>
-            </tr>                    
-          
-        
-        </table>        
-
-        <div id="applianceRowDiv">
-            <button onclick="addApplianceRow()">+Add More Appliances</button>
-            <a href="chart.html" target="_blank"><button>Appliances Load List</button></a>
-        </div>
-
-        
-        <div class="result">
-            <div id="connectedloadDiv">
-                <label>Connected Load: </label>
-                <input type="text" oninput="calculateConsumption()" name="connectedload" id="connectedload">
-            </div>
-            <!-- <div id="totalDaysDiv">
-                <label for="totalDays">Total Days: </label>
-                <input type="text" name="totalDays" id="totalDays">
-            </div>          -->
-            <!-- jodi number of days lage uncomment kori dile hol javascript logot -->
-            
-            <button onclick="calculateConsumption()">Calculate</button>
-            <p id="total_result"></p>
-            <br>
-            <p id="monthly_result"></p>
-            <br>
-            <p id="grandTotalResult"></p>
-
-        </div>
-        <div>
-        <button id="showButton">Show Bill Breakdown</button>
-        </div>
-
-        <div class="charges" id="charges">
-            <div id="fixedchargeDiv">
-                <label for="fixedchargeField">Fixed Charge: </label>
-                <span name="fixedcharge" id="fixedchargeField">
-            </div>
-            <div id="energychargeDiv">
-                <label for="energychargeField">Energy Charge: </label>
-                <span name="energycharge" id="energychargeField">
-            </div>
-            <div id="electricitydutyDiv">
-                <label for="electricitydutyField">Electricity Duty: </label>
-                <span name="electricityduty" id="electricitydutyField">
-            </div>
-            <div id="fpppaDiv">
-                <label for="fpppaField">FPPPA Charge: </label>
-                <span name="fpppa" id="fpppaField">
-            </div>
-            <div id="totalDiv">
-                <label for="totalField">Total Charge: </label>
-                <span name="total" id="totalField">
-            </div>
-            <div id="govtsubsidyDiv">
-                <label for="govtsubsidyField">Government Subsidy: </label>
-                <span name="govtsubsidy" id="govtsubsidyField">
-            </div>
-            <div id="grandtotalDiv">
-                <label for="grandtotalField">Grand Total: </label>
-                <span name="grandtotal" id="grandtotalField">
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="img/logo.png" alt="APDCL Logo" class="logo">
+                <div class="company-info">
+                    <h1>Assam Power Distribution Company Limited</h1>
+                    <p class="tagline">Powering Progress, Empowering Lives</p>
+                </div>
             </div>
         </div>
-        
-        <div>
-            <a href="report.html" target="_blank" rel="noopener noreferrer"><button id="reportButton">Detailed Report</button></a>
+    </header>
+
+    <main class="main-container">
+        <div class="calculator-header">
+            <h2><i class="fas fa-calculator"></i> Electricity Consumption Calculator</h2>
+            <p class="subtitle">Calculate your monthly electricity consumption and estimated bill</p>
         </div>
 
-    </div>
+        <div class="calculator-card">
+            <div class="appliances-section">
+                <h3><i class="fas fa-plug"></i> Select Your Appliances</h3>
+                
+                <div class="appliance-grid">
+                    <!-- Light -->
+                    <div class="appliance-item">
+                        <div class="appliance-header">
+                            <div class="appliance-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="appliance-info">
+                                <label class="appliance-label">
+                                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="light">
+                                    <span class="checkmark"></span>
+                                    Light
+                                </label>
+                                <button class="add-more-btn" onclick="addLight(this)" title="Add another light">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="appliance-controls">
+                            <div class="input-group">
+                                <label>Quantity</label>
+                                <input type="number" oninput="calculateConsumption()" name="quantity" min="1" placeholder="1">
+                            </div>
+                            <div class="input-group">
+                                <label>Power</label>
+                                <select onchange="calculateConsumption()" name="light_power">
+                                    <option value="5">5W</option>
+                                    <option value="9">9W</option>
+                                    <option value="15">15W</option>
+                                    <option value="20">20W</option>
+                                    <option value="30">30W</option>
+                                    <option value="40">40W</option>
+                                    <option value="60">60W</option>
+                                    <option value="100">100W</option>
+                                </select>
+                            </div>
+                            <div class="time-inputs">
+                                <div class="input-group">
+                                    <label>Hours</label>
+                                    <input type="number" oninput="calculateConsumption()" name="light_hour" min="0" max="24" placeholder="0">
+                                </div>
+                                <div class="input-group">
+                                    <label>Minutes</label>
+                                    <input type="number" oninput="calculateConsumption()" name="light_minute" min="0" max="59" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fan -->
+                    <div class="appliance-item">
+                        <div class="appliance-header">
+                            <div class="appliance-icon">
+                                <i class="fas fa-fan"></i>
+                            </div>
+                            <div class="appliance-info">
+                                <label class="appliance-label">
+                                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="fan">
+                                    <span class="checkmark"></span>
+                                    Fan
+                                </label>
+                                <button class="add-more-btn" onclick="addFan(this)" title="Add another fan">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="appliance-controls">
+                            <div class="input-group">
+                                <label>Quantity</label>
+                                <input type="number" oninput="calculateConsumption()" name="quantity" min="1" placeholder="1">
+                            </div>
+                            <div class="input-group">
+                                <label>Power</label>
+                                <input type="text" oninput="calculateConsumption()" name="fan_power" value="75W" readonly>
+                            </div>
+                            <div class="time-inputs">
+                                <div class="input-group">
+                                    <label>Hours</label>
+                                    <input type="number" oninput="calculateConsumption()" name="fan_hour" min="0" max="24" placeholder="0">
+                                </div>
+                                <div class="input-group">
+                                    <label>Minutes</label>
+                                    <input type="number" oninput="calculateConsumption()" name="fan_minute" min="0" max="59" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Refrigerator -->
+                    <div class="appliance-item">
+                        <div class="appliance-header">
+                            <div class="appliance-icon">
+                                <i class="fas fa-snowflake"></i>
+                            </div>
+                            <div class="appliance-info">
+                                <label class="appliance-label">
+                                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="refrigerator">
+                                    <span class="checkmark"></span>
+                                    Refrigerator
+                                </label>
+                                <button class="add-more-btn" onclick="addRefrigerator(this)" title="Add another refrigerator">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="appliance-controls">
+                            <div class="input-group">
+                                <label>Quantity</label>
+                                <input type="number" oninput="calculateConsumption()" name="quantity" min="1" placeholder="1">
+                            </div>
+                            <div class="input-group">
+                                <label>Power</label>
+                                <input type="text" oninput="calculateConsumption()" name="refrigerator_power" value="300W">
+                            </div>
+                            <div class="time-inputs">
+                                <div class="input-group">
+                                    <label>Hours</label>
+                                    <input type="number" oninput="calculateConsumption()" name="refrigerator_hour" min="0" max="24" placeholder="24">
+                                </div>
+                                <div class="input-group">
+                                    <label>Minutes</label>
+                                    <input type="number" oninput="calculateConsumption()" name="refrigerator_minute" min="0" max="59" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Television -->
+                    <div class="appliance-item">
+                        <div class="appliance-header">
+                            <div class="appliance-icon">
+                                <i class="fas fa-tv"></i>
+                            </div>
+                            <div class="appliance-info">
+                                <label class="appliance-label">
+                                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="television">
+                                    <span class="checkmark"></span>
+                                    Television
+                                </label>
+                                <button class="add-more-btn" onclick="addTelevision(this)" title="Add another television">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="appliance-controls">
+                            <div class="input-group">
+                                <label>Quantity</label>
+                                <input type="number" oninput="calculateConsumption()" name="quantity" min="1" placeholder="1">
+                            </div>
+                            <div class="input-group">
+                                <label>Power</label>
+                                <input type="text" oninput="calculateConsumption()" name="television_power" value="60W">
+                            </div>
+                            <div class="time-inputs">
+                                <div class="input-group">
+                                    <label>Hours</label>
+                                    <input type="number" oninput="calculateConsumption()" name="television_hour" min="0" max="24" placeholder="0">
+                                </div>
+                                <div class="input-group">
+                                    <label>Minutes</label>
+                                    <input type="number" oninput="calculateConsumption()" name="television_minute" min="0" max="59" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Air Conditioner -->
+                    <div class="appliance-item">
+                        <div class="appliance-header">
+                            <div class="appliance-icon">
+                                <i class="fas fa-wind"></i>
+                            </div>
+                            <div class="appliance-info">
+                                <label class="appliance-label">
+                                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="airconditioner">
+                                    <span class="checkmark"></span>
+                                    Air Conditioner
+                                </label>
+                                <button class="add-more-btn" onclick="addAirConditioner(this)" title="Add another AC">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="appliance-controls">
+                            <div class="input-group">
+                                <label>Quantity</label>
+                                <input type="number" oninput="calculateConsumption()" name="quantity" min="1" placeholder="1">
+                            </div>
+                            <div class="input-group">
+                                <label>Power</label>
+                                <select onchange="calculateConsumption()" name="airconditioner_power">
+                                    <option value="1200">1200W (1 Ton, 3 star)</option>
+                                    <option value="1700">1700W (1.5 Ton, 3 star)</option>
+                                    <option value="2300">2300W (2 Ton, 3 star)</option>
+                                    <option value="1100">1100W (1 Ton, Inverter)</option>
+                                    <option value="1600">1600W (1.5 Ton, Inverter)</option>
+                                    <option value="2100">2100W (2 Ton, Inverter)</option>
+                                </select>
+                            </div>
+                            <div class="time-inputs">
+                                <div class="input-group">
+                                    <label>Hours</label>
+                                    <input type="number" oninput="calculateConsumption()" name="airconditioner_hour" min="0" max="24" placeholder="0">
+                                </div>
+                                <div class="input-group">
+                                    <label>Minutes</label>
+                                    <input type="number" oninput="calculateConsumption()" name="airconditioner_minute" min="0" max="59" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Geyser -->
+                    <div class="appliance-item">
+                        <div class="appliance-header">
+                            <div class="appliance-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="appliance-info">
+                                <label class="appliance-label">
+                                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="geyser">
+                                    <span class="checkmark"></span>
+                                    Geyser
+                                </label>
+                                <button class="add-more-btn" onclick="addGeyser(this)" title="Add another geyser">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="appliance-controls">
+                            <div class="input-group">
+                                <label>Quantity</label>
+                                <input type="number" oninput="calculateConsumption()" name="quantity" min="1" placeholder="1">
+                            </div>
+                            <div class="input-group">
+                                <label>Power</label>
+                                <input type="text" oninput="calculateConsumption()" name="geyser_power" value="2200W">
+                            </div>
+                            <div class="time-inputs">
+                                <div class="input-group">
+                                    <label>Hours</label>
+                                    <input type="number" oninput="calculateConsumption()" name="geyser_hour" min="0" max="24" placeholder="0">
+                                </div>
+                                <div class="input-group">
+                                    <label>Minutes</label>
+                                    <input type="number" oninput="calculateConsumption()" name="geyser_minute" min="0" max="59" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="additional-appliances" id="additionalAppliances"></div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" onclick="addApplianceRow()">
+                        <i class="fas fa-plus"></i> Add Custom Appliance
+                    </button>
+                    <a href="chart.html" target="_blank" class="btn btn-outline">
+                        <i class="fas fa-list"></i> View Load Chart
+                    </a>
+                </div>
+            </div>
+
+            <div class="calculation-section">
+                <div class="connected-load-input">
+                    <label for="connectedload">
+                        <i class="fas fa-plug"></i> Connected Load (kW)
+                    </label>
+                    <input type="number" oninput="calculateConsumption()" name="connectedload" id="connectedload" 
+                           step="0.1" min="0.5" max="30" placeholder="Enter connected load">
+                    <small>Enter your total connected load between 0.5 - 30 kW</small>
+                </div>
+
+                <button class="btn btn-primary calculate-btn" onclick="calculateConsumption()">
+                    <i class="fas fa-calculator"></i> Calculate Consumption
+                </button>
+
+                <div class="results-section">
+                    <div class="result-card" id="dailyResult">
+                        <div class="result-icon">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        <div class="result-content">
+                            <h4>Daily Consumption</h4>
+                            <p id="total_result">Enter appliance details to calculate</p>
+                        </div>
+                    </div>
+
+                    <div class="result-card" id="monthlyResult">
+                        <div class="result-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="result-content">
+                            <h4>Monthly Consumption</h4>
+                            <p id="monthly_result">Enter appliance details to calculate</p>
+                        </div>
+                    </div>
+
+                    <div class="result-card bill-result" id="billResult">
+                        <div class="result-icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <div class="result-content">
+                            <h4>Estimated Monthly Bill</h4>
+                            <p id="grandTotalResult">Enter connected load to calculate bill</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bill-actions">
+                    <button class="btn btn-outline" id="showButton">
+                        <i class="fas fa-eye"></i> Show Bill Breakdown
+                    </button>
+                    <a href="report.html" target="_blank" class="btn btn-secondary" id="reportButton">
+                        <i class="fas fa-file-alt"></i> Detailed Report
+                    </a>
+                </div>
+
+                <div class="bill-breakdown" id="charges">
+                    <h4><i class="fas fa-receipt"></i> Bill Breakdown</h4>
+                    <div class="breakdown-grid">
+                        <div class="breakdown-item">
+                            <span class="label">Fixed Charge:</span>
+                            <span class="value" id="fixedchargeField">₹0.00</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="label">Energy Charge:</span>
+                            <span class="value" id="energychargeField">₹0.00</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="label">Electricity Duty:</span>
+                            <span class="value" id="electricitydutyField">₹0.00</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="label">FPPPA Charge:</span>
+                            <span class="value" id="fpppaField">₹0.00</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="label">Total Charge:</span>
+                            <span class="value" id="totalField">₹0.00</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="label">Government Subsidy:</span>
+                            <span class="value subsidy" id="govtsubsidyField">₹0.00</span>
+                        </div>
+                        <div class="breakdown-item total">
+                            <span class="label">Grand Total:</span>
+                            <span class="value" id="grandtotalField">₹0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <script src="script.js"></script>
 </body>
