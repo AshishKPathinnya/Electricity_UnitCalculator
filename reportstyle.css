@@ -1,0 +1,80 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+#container {
+    margin: 20px auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    justify-content: center;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 24px;
+}
+
+#ccn_span {
+    float: right;
+}
+
+.dateSpan {
+    float: left;
+    font-size: 20px;
+    margin-top: 1%;
+    margin-bottom: 2%;
+}
+
+.timeSpan {
+    float: right;
+    font-size: 20px;
+    margin-top: 1%;
+    margin-bottom: 2%;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+margin-top: 5%;
+margin-bottom: 3%;
+}
+
+table, th, td {
+    border: 2px solid black;
+    font-size: 20px;
+}
+
+#gTotal, #grand_total {
+    font-weight: bolder;
+}
+
+#pdfButtonDiv {
+    text-align: center;
+}
+
+#pdfButton {
+    margin: 13px auto; 
+    font-weight: medium;
+    color: white;
+    background-color: #4287f5;
+    padding: 10px;
+    border-radius: .5rem;
+    font-size: medium;
+    box-sizing: border-box;
+    border: 0;
+    width: 150px;
+    height: 40px;
+}

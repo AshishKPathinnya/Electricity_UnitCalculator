@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electricity Consumption Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="theme-toggle">
+        <button class="theme-btn" onclick="toggleTheme(event)" aria-label="Toggle theme">
+            <i class="fas fa-sun" id="theme-icon"></i>
+        </button>
+    </div>
+
+    <header class="header">
+        <div class="header-content">
+            <div class="electrical-grid-bg"></div>
+            <div class="power-lines-animation"></div>
+            <div class="logo-section">
+                <img src="img/logo.png" alt="APDCL Logo" class="logo">
+                <div class="company-info">
+                    <h1>Assam Power Distribution Company Limited</h1>
+                    <p class="tagline">⚡ Powering Progress, Empowering Lives ⚡</p>
+                    <p class="license-info">License No: AERC/D/01/2003 | Established: 2003</p>
+                    <div class="company-stats">
+                        <span class="stat-item"><i class="fas fa-users"></i> 50L+ Customers</span>
+                        <span class="stat-item"><i class="fas fa-bolt"></i> 24/7 Service</span>
+                        <span class="stat-item"><i class="fas fa-phone"></i> 1912 Helpline</span>
+                        <span class="stat-item"><i class="fas fa-map-marker-alt"></i> Assam Wide</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <div class="calculator-header">
+            <h2><i class="fas fa-calculator"></i> Electricity Consumption Calculator</h2>
+            <p class="subtitle">Calculate your monthly electricity consumption and estimated bill</p>
+            <div class="safety-notice">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>For accurate billing, please refer to your latest electricity bill for connected load details</span>
+            </div>
+            <div class="energy-efficiency-banner">
+                <i class="fas fa-leaf"></i>
+                <span>Promote Energy Efficiency • Save Money • Reduce Carbon Footprint</span>
+                <i class="fas fa-recycle"></i>
+            </div>
+        </div>
+
+        <div class="calculator-card">
+            <div class="appliances-section">
+                <h3><i class="fas fa-plug"></i> Select Your Appliances</h3>
+                
+                <div class="appliance-grid">
+                    <!-- Light -->
+                    <div class="appliance-item">
+                        <div class="appliance-header">
+                            <div class="appliance-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="appliance-info">
+                                <label class="appliance-label">
+                                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="light">
+                                    <span class="checkmark"></span>
+                                    Light
+                                </label>
+                                <button class="add-more-btn" onclick="addLight(this)" title="Add another light">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="appliance-controls">
+                            <div class="input-group">
+                                <label>Quantity</label>
+                                <input type="number" oninput="calculateConsumption()" name="quantity" min="1" placeholder="1">
+                            </div>
+                            <div class="input-group">
+                                <label>Power</label>
+                                <select onchange="calculateConsumption()" name="light_power">
+                                    <option value="5">5W</option>
+                                    <option value="9">9W</option>
+                                    <option value="15">15W</option>
+                                    <option value="20">20W</option>
+                                    <option value="30">30W</option>
+                                    <option value="40">40W</option>
+                                    <option value="60">60W</option>
+                                    <option value="100">100W</option>
+                                </select>
+                            </div>
+                            <div class="time-inputs">
+                                <div class="input-group">
+                                    <label>Hours</label>
+                                    <input type="number" oninput="calculateConsumption()" name="light_hour" min="0" max="24" placeholder="0">
+                                </div>
+                                <div class="input-group">
+                                    <label>Minutes</label>
+                                    <input type="number" oninput="calculateConsumption()" name="light_minute" min="0" max="59" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fan -->
+                    <div class="appliance-item">
+                        <div class="appliance-header">
+                            <div class="appliance-icon">
+                                <i class="fas fa-fan"></i>
+                            </div>
+                            <div class="appliance-info">
+                                <label class="appliance-label">
+                                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="fan">
+                                    <span class="checkmark"></span>
+                                    Fan
+                                </label>
+                                <button class="add-more-btn" onclick="addFan(this)" title="Add another fan">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="appliance-controls">
+                            <div class="input-group">
+                                <label>Quantity</label>
+                                <input type="number" oninput="calculateConsumption()" name="quantity" min="1" placeholder="1">
+                            </div>
+                            <div class="input-group">
+                                <label>Power</label>
+                                <input type="text" oninput="calculateConsumption()" name="fan_power" value="75W" readonly>
+                            </div>
+                            <div class="time-inputs">
+                                <div class="input-group">
+                                    <label>Hours</label>
+                                    <input type="number" oninput="calculateConsumption()" name="fan_hour" min="0" max="24" placeholder="0">
+                                </div>
+                                <div class="input-group">
+                                    <label>Minutes</label>
+                                    <input type="number" oninput="calculateConsumption()" name="fan_minute" min="0" max="59" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Refrigerator -->
+                    <div class="appliance-item">
+                        <div class="appliance-header">
+                            <div class="appliance-icon">
+                                <i class="fas fa-snowflake"></i>
+                            </div>
+                            <div class="appliance-info">
+                                <label class="appliance-label">
+                                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="refrigerator">
+                                    <span class="checkmark"></span>
+                                    Refrigerator
+                                </label>
+                                <button class="add-more-btn" onclick="addRefrigerator(this)" title="Add another refrigerator">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="appliance-controls">
+                            <div class="input-group">
+                                <label>Quantity</label>
+                                <input type="number" oninput="calculateConsumption()" name="quantity" min="1" placeholder="1">
+                            </div>
+                            <div class="input-group">
+                                <label>Power</label>
+                                <input type="text" oninput="calculateConsumption()" name="refrigerator_power" value="300W">
+                            </div>
+                            <div class="time-inputs">
+                                <div class="input-group">
+                                    <label>Hours</label>
+                                    <input type="number" oninput="calculateConsumption()" name="refrigerator_hour" min="0" max="24" placeholder="24">
+                                </div>
+                                <div class="input-group">
+                                    <label>Minutes</label>
+                                    <input type="number" oninput="calculateConsumption()" name="refrigerator_minute" min="0" max="59" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Television -->
+                    <div class="appliance-item">
+                        <div class="appliance-header">
+                            <div class="appliance-icon">
+                                <i class="fas fa-tv"></i>
+                            </div>
+                            <div class="appliance-info">
+                                <label class="appliance-label">
+                                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="television">
+                                    <span class="checkmark"></span>
+                                    Television
+                                </label>
+                                <button class="add-more-btn" onclick="addTelevision(this)" title="Add another television">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="appliance-controls">
+                            <div class="input-group">
+                                <label>Quantity</label>
+                                <input type="number" oninput="calculateConsumption()" name="quantity" min="1" placeholder="1">
+                            </div>
+                            <div class="input-group">
+                                <label>Power</label>
+                                <input type="text" oninput="calculateConsumption()" name="television_power" value="60W">
+                            </div>
+                            <div class="time-inputs">
+                                <div class="input-group">
+                                    <label>Hours</label>
+                                    <input type="number" oninput="calculateConsumption()" name="television_hour" min="0" max="24" placeholder="0">
+                                </div>
+                                <div class="input-group">
+                                    <label>Minutes</label>
+                                    <input type="number" oninput="calculateConsumption()" name="television_minute" min="0" max="59" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Air Conditioner -->
+                    <div class="appliance-item">
+                        <div class="appliance-header">
+                            <div class="appliance-icon">
+                                <i class="fas fa-wind"></i>
+                            </div>
+                            <div class="appliance-info">
+                                <label class="appliance-label">
+                                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="airconditioner">
+                                    <span class="checkmark"></span>
+                                    Air Conditioner
+                                </label>
+                                <button class="add-more-btn" onclick="addAirConditioner(this)" title="Add another AC">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="appliance-controls">
+                            <div class="input-group">
+                                <label>Quantity</label>
+                                <input type="number" oninput="calculateConsumption()" name="quantity" min="1" placeholder="1">
+                            </div>
+                            <div class="input-group">
+                                <label>Power</label>
+                                <select onchange="calculateConsumption()" name="airconditioner_power">
+                                    <option value="1200">1200W (1 Ton, 3 star)</option>
+                                    <option value="1700">1700W (1.5 Ton, 3 star)</option>
+                                    <option value="2300">2300W (2 Ton, 3 star)</option>
+                                    <option value="1100">1100W (1 Ton, Inverter)</option>
+                                    <option value="1600">1600W (1.5 Ton, Inverter)</option>
+                                    <option value="2100">2100W (2 Ton, Inverter)</option>
+                                </select>
+                            </div>
+                            <div class="time-inputs">
+                                <div class="input-group">
+                                    <label>Hours</label>
+                                    <input type="number" oninput="calculateConsumption()" name="airconditioner_hour" min="0" max="24" placeholder="0">
+                                </div>
+                                <div class="input-group">
+                                    <label>Minutes</label>
+                                    <input type="number" oninput="calculateConsumption()" name="airconditioner_minute" min="0" max="59" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Geyser -->
+                    <div class="appliance-item">
+                        <div class="appliance-header">
+                            <div class="appliance-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="appliance-info">
+                                <label class="appliance-label">
+                                    <input type="checkbox" onclick="calculateConsumption()" name="device" value="geyser">
+                                    <span class="checkmark"></span>
+                                    Geyser
+                                </label>
+                                <button class="add-more-btn" onclick="addGeyser(this)" title="Add another geyser">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="appliance-controls">
+                            <div class="input-group">
+                                <label>Quantity</label>
+                                <input type="number" oninput="calculateConsumption()" name="quantity" min="1" placeholder="1">
+                            </div>
+                            <div class="input-group">
+                                <label>Power</label>
+                                <input type="text" oninput="calculateConsumption()" name="geyser_power" value="2200W">
+                            </div>
+                            <div class="time-inputs">
+                                <div class="input-group">
+                                    <label>Hours</label>
+                                    <input type="number" oninput="calculateConsumption()" name="geyser_hour" min="0" max="24" placeholder="0">
+                                </div>
+                                <div class="input-group">
+                                    <label>Minutes</label>
+                                    <input type="number" oninput="calculateConsumption()" name="geyser_minute" min="0" max="59" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="additional-appliances" id="additionalAppliances"></div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" onclick="addApplianceRow()">
+                        <i class="fas fa-plus"></i> Add Custom Appliance
+                    </button>
+                    <a href="chart.html" target="_blank" class="btn btn-outline">
+                        <i class="fas fa-chart-bar"></i> View Load Chart
+                    </a>
+                    <button class="btn btn-info" onclick="showEnergyTips()">
+                        <i class="fas fa-lightbulb"></i> Energy Saving Tips
+                    </button>
+                    <button class="btn btn-warning" onclick="showTariffInfo()">
+                        <i class="fas fa-info-circle"></i> Tariff Information
+                    </button>
+                </div>
+            </div>
+
+            <div class="calculation-section">
+                <div class="connected-load-input">
+                    <label for="connectedload">
+                        <i class="fas fa-plug"></i> Total Connected Load (kW)
+                    </label>
+                    <input type="number" oninput="calculateConsumption()" name="connectedload" id="connectedload" 
+                           step="0.1" min="0.5" max="30" placeholder="Enter connected load">
+                    <small><i class="fas fa-info-circle"></i> Enter your sanctioned connected load as per your electricity connection (0.5 - 30 kW)</small>
+                </div>
+
+                <button class="btn btn-primary calculate-btn" onclick="calculateConsumption()">
+                    <i class="fas fa-calculator"></i> Calculate Consumption
+                </button>
+
+                <div class="results-section">
+                    <div class="result-card" id="dailyResult">
+                        <div class="result-icon">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        <div class="result-content">
+                            <h4>Daily Consumption</h4>
+                            <p id="total_result">Enter appliance details to calculate</p>
+                        </div>
+                    </div>
+
+                    <div class="result-card" id="monthlyResult">
+                        <div class="result-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="result-content">
+                            <h4>Monthly Consumption</h4>
+                            <p id="monthly_result">Enter appliance details to calculate</p>
+                        </div>
+                    </div>
+
+                    <div class="result-card bill-result" id="billResult">
+                        <div class="result-icon">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                        </div>
+                        <div class="result-content">
+                            <h4>Estimated Monthly Bill</h4>
+                            <p id="grandTotalResult">Enter connected load to calculate bill</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bill-actions">
+                    <button class="btn btn-outline" id="showButton">
+                        <i class="fas fa-eye"></i> Show Bill Breakdown
+                    </button>
+                    <a href="report.html" target="_blank" class="btn btn-secondary" id="reportButton">
+                        <i class="fas fa-file-alt"></i> Detailed Report
+                    </a>
+                    <button class="btn btn-success" onclick="showPaymentOptions()">
+                        <i class="fas fa-credit-card"></i> Payment Options
+                    </button>
+                    <button class="btn btn-info" onclick="showComplaintPortal()">
+                        <i class="fas fa-headset"></i> Lodge Complaint
+                    </button>
+                </div>
+
+                <div class="bill-breakdown" id="charges">
+                    <h4><i class="fas fa-receipt"></i> Bill Breakdown</h4>
+                    <div class="breakdown-grid">
+                        <div class="breakdown-item">
+                            <span class="label">Fixed Charge:</span>
+                            <span class="value" id="fixedchargeField">₹0.00</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="label">Energy Charge:</span>
+                            <span class="value" id="energychargeField">₹0.00</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="label">Electricity Duty:</span>
+                            <span class="value" id="electricitydutyField">₹0.00</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="label">FPPPA Charge:</span>
+                            <span class="value" id="fpppaField">₹0.00</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="label">Total Charge:</span>
+                            <span class="value" id="totalField">₹0.00</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span class="label">Government Subsidy:</span>
+                            <span class="value subsidy" id="govtsubsidyField">₹0.00</span>
+                        </div>
+                        <div class="breakdown-item total">
+                            <span class="label">Grand Total:</span>
+                            <span class="value" id="grandtotalField">₹0.00</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="electricity-info-panel" id="electricityInfo">
+                    <h4><i class="fas fa-info-circle"></i> Understanding Your Electricity Bill</h4>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <i class="fas fa-home"></i>
+                            <div>
+                                <strong>Consumer Categories</strong>
+                                <p>Jeevan Dhara (0.5kW), Domestic-A (0.5-5kW), Domestic-B (5-30kW)</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-calculator"></i>
+                            <div>
+                                <strong>Tariff Structure</strong>
+                                <p>Fixed charges + Energy charges + Electricity duty + FPPPA charges</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-gift"></i>
+                            <div>
+                                <strong>Government Subsidy</strong>
+                                <p>Available for Jeevan Dhara and Domestic-A (up to 120 units)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="power-quality-info">
+                    <h4><i class="fas fa-chart-line"></i> Power Quality Standards</h4>
+                    <div class="quality-metrics">
+                        <div class="metric-item">
+                            <span class="metric-label">Voltage:</span>
+                            <span class="metric-value">230V ±6%</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">Frequency:</span>
+                            <span class="metric-value">50Hz ±3%</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">Power Factor:</span>
+                            <span class="metric-value">≥0.9</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Energy Tips Modal -->
+    <div class="modal" id="energyTipsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-lightbulb"></i> Energy Saving Tips</h3>
+                <button class="close-btn" onclick="closeModal('energyTipsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>LED Lighting</h4>
+                        <p>Replace incandescent bulbs with LED lights to save up to 80% energy</p>
+                    </div>
+                    <div class="tip-item">
+                        <i class="fas fa-snowflake"></i>
+                        <h4>AC Efficiency</h4>
+                        <p>Set AC temperature to 24°C and use ceiling fans for better circulation</p>
+                    </div>
+                    <div class="tip-item">
+                        <i class="fas fa-plug"></i>
+                        <h4>Unplug Devices</h4>
+                        <p>Unplug electronics when not in use to avoid phantom power consumption</p>
+                    </div>
+                    <div class="tip-item">
+                        <i class="fas fa-star"></i>
+                        <h4>Star Rated Appliances</h4>
+                        <p>Choose 5-star rated appliances for maximum energy efficiency</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Payment Options Modal -->
+    <div class="modal" id="paymentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-credit-card"></i> Payment Options</h3>
+                <button class="close-btn" onclick="closeModal('paymentModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="payment-options">
+                    <div class="payment-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h4>Online Payment</h4>
+                        <p>Pay through APDCL website, mobile app, or UPI</p>
+                        <button class="btn btn-primary" onclick="redirectToOnlinePayment()" style="margin-top: 1rem; padding: 0.5rem 1rem; font-size: 0.875rem;">
+                            <i class="fas fa-external-link-alt"></i> Pay Online
+                        </button>
+                    </div>
+                    <div class="payment-item">
+                        <i class="fas fa-university"></i>
+                        <h4>Bank Payment</h4>
+                        <p>Visit authorized banks or use net banking services</p>
+                        <button class="btn btn-secondary" onclick="redirectToBankPayment()" style="margin-top: 1rem; padding: 0.5rem 1rem; font-size: 0.875rem;">
+                            <i class="fas fa-external-link-alt"></i> EasyPay Login
+                        </button>
+                    </div>
+                    <div class="payment-item">
+                        <i class="fas fa-store"></i>
+                        <h4>Collection Centers</h4>
+                        <p>Pay at APDCL offices or authorized collection centers</p>
+                        <div style="margin-top: 1rem; padding: 0.5rem; background: var(--bg-tertiary); border-radius: var(--radius-md); font-size: 0.75rem; color: var(--text-muted);">
+                            <i class="fas fa-map-marker-alt"></i> Visit nearest APDCL office
+                        </div>
+                    </div>
+                    <div class="payment-item">
+                        <i class="fas fa-phone"></i>
+                        <h4>Customer Care</h4>
+                        <p>Call 1912 for payment assistance and queries</p>
+                        <button class="btn btn-info" onclick="redirectToCustomerCare()" style="margin-top: 1rem; padding: 0.5rem 1rem; font-size: 0.875rem;">
+                            <i class="fas fa-external-link-alt"></i> CGRF Portal
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Tariff Information Modal -->
+    <div class="modal" id="tariffModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-info-circle"></i> Current Tariff Rates (2024-25)</h3>
+                <button class="close-btn" onclick="closeModal('tariffModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="tariff-table">
+                    <h4>Domestic Tariff Structure</h4>
+                    <table class="tariff-rates">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Connected Load</th>
+                                <th>Fixed Charge</th>
+                                <th>Energy Charge</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Jeevan Dhara</td>
+                                <td>0.5 kW</td>
+                                <td>₹40/month</td>
+                                <td>₹5.05/unit</td>
+                            </tr>
+                            <tr>
+                                <td>Domestic-A</td>
+                                <td>0.5-5 kW</td>
+                                <td>₹70/kW/month</td>
+                                <td>₹5.70-7.90/unit (slab)</td>
+                            </tr>
+                            <tr>
+                                <td>Domestic-B</td>
+                                <td>5-30 kW</td>
+                                <td>₹70/kW/month</td>
+                                <td>₹7.45/unit</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="tariff-note">
+                        <i class="fas fa-info-circle"></i>
+                        Rates include Electricity Duty (5%) and FPPPA charges. Government subsidy applicable for eligible categories.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Complaint Portal Modal -->
+    <div class="modal" id="complaintModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-headset"></i> Customer Support & Complaints</h3>
+                <button class="close-btn" onclick="closeModal('complaintModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="support-options">
+                    <div class="support-item urgent">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h4>Emergency Services</h4>
+                        <p>Power outage, electrical hazards</p>
+                        <div class="contact-info">
+                            <span><i class="fas fa-phone"></i> 1912 (24x7)</span>
+                            <span><i class="fas fa-mobile-alt"></i> Emergency Helpline</span>
+                        </div>
+                    </div>
+                    <div class="support-item">
+                        <i class="fas fa-file-alt"></i>
+                        <h4>Billing Queries</h4>
+                        <p>Bill disputes, payment issues</p>
+                        <div class="contact-info">
+                            <span><i class="fas fa-envelope"></i> billing@apdcl.org</span>
+                            <span><i class="fas fa-globe"></i> www.apdcl.org</span>
+                        </div>
+                    </div>
+                    <div class="support-item">
+                        <i class="fas fa-tools"></i>
+                        <h4>Technical Support</h4>
+                        <p>Meter issues, connection problems</p>
+                        <div class="contact-info">
+                            <span><i class="fas fa-phone"></i> 0361-2345678</span>
+                            <span><i class="fas fa-clock"></i> 9 AM - 6 PM</span>
+                            <button class="btn btn-warning" onclick="redirectToTechnicalSupport()" style="margin-top: 0.5rem; padding: 0.5rem 1rem; font-size: 0.75rem;">
+                                <i class="fas fa-external-link-alt"></i> Lodge Technical Complaint
+                            </button>
+                        </div>
+                    </div>
+                    <div class="support-item">
+                        <i class="fas fa-plus-circle"></i>
+                        <h4>New Connection</h4>
+                        <p>Apply for new electricity connection</p>
+                        <div class="contact-info">
+                            <button class="btn btn-success" onclick="redirectToNewConnection()" style="margin-top: 0.5rem; padding: 0.5rem 1rem; font-size: 0.75rem;">
+                                <i class="fas fa-external-link-alt"></i> Apply Online
+                            </button>
+                            <span><i class="fas fa-map-marker-alt"></i> Visit nearest office</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
